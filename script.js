@@ -12,13 +12,43 @@ lectures.forEach(l=>{
   lectureList.appendChild(li);
 });
 
+<script>
+
+const sheetURL = "PUT_GOOGLE_SHEET_LINK_HERE";
+
+fetch(sheetURL)
+.then(res => res.text())
+.then(data => {
+
+let rows = data.split("\n");
+
+let newsText = rows
+.slice(1)
+.map(r => r.replace(/,/g,""))
+.join("  🔷  ");
+
+document.getElementById("newsContent").innerText = newsText;
+
+});
+
+</script>
+
 // معرض الصور
-const photos = ["images/1.jpg","images/2.jpg","images/3.jpg","images/4.jpg"];
+fetch("images.json")
+.then(response => response.json())
+.then(data => {
+
 const gallery = document.getElementById("photo-gallery");
-photos.forEach(p=>{
-  let img=document.createElement("img");
-  img.src=p;
-  gallery.appendChild(img);
+
+data.forEach(photo => {
+
+let img = document.createElement("img");
+img.src = photo;
+
+gallery.appendChild(img);
+
+});
+
 });
 
 // الأخبار
