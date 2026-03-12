@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>كلية النهضة الجديدة – النماذج الإدارية الشاملة</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(165deg, #eef5fc 0%, #f8fbfe 80%);
+            min-height: 100vh;
+            color: #022b40;
+            padding: 0;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* الخلفية الزرقاء للشعار */
+        .logo-header {
+            background: #0a3a5c;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .logo-header img {
+            max-width: 100%;
+            height: auto;
+            max-height: 100px;
+            object-fit: contain;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 1.5rem 2rem 1.5rem;
+        }
+
+        /* النص التعريفي تحت الشعار */
+        .intro-text {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #05445E;
+            background: rgba(255,255,255,0.7);
+            padding: 1.2rem 2rem;
+            border-radius: 70px;
+            display: inline-block;
+            width: auto;
+            margin-right: auto;
+            margin-left: auto;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #b68b40;
+            backdrop-filter: blur(10px);
+        }
+
+        .intro-text span {
+            color: #b68b40;
+            font-size: 2rem;
+            display: inline-block;
+            margin: 0 0.3rem;
+        }
+
+        .intro-text i {
+            color: #b68b40;
+            margin: 0 0.5rem;
+        }
+
+        /* بطاقة النماذج */
+        .forms-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border-radius: 70px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 35px 50px -20px #05405b, 0 0 0 1px rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,240,0.7);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding-right: 1.5rem;
+            border-right: 7px solid #b68b40;
+            border-radius: 0 20px 20px 0;
+        }
+
+        .card-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #05445E;
+        }
+
+        .card-header i {
+            font-size: 2.2rem;
+            color: #b68b40;
+            background: rgba(182, 139, 64, 0.1);
+            padding: 0.8rem;
+            border-radius: 50%;
+        }
+
+        /* عدادات عدد النماذج */
+        .forms-count {
+            display: inline-block;
+            background: #b68b40;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            margin-right: 1rem;
+        }
+
+        /* الجدول العصري */
+        .forms-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 0.8rem;
+        }
+
+        .forms-table tr {
+            background: white;
+            border-radius: 60px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 40, 60, 0.08);
+        }
+
+        .forms-table tr:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 60, 90, 0.15);
+        }
+
+        .forms-table td {
+            padding: 1rem 1.8rem;
+            font-size: 1.1rem;
+            color: #05445E;
+        }
+
+        .forms-table td:first-child {
+            border-radius: 0 50px 50px 0;
+            font-weight: 600;
+            width: 75%;
+        }
+
+        .forms-table td:last-child {
+            border-radius: 50px 0 0 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* زر التحميل العصري */
+        .download-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(145deg, #05445E, #1E6F9F);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            box-shadow: 0 8px 15px rgba(0, 70, 100, 0.3);
+            white-space: nowrap;
+            cursor: pointer;
+            border: none;
+        }
+
+        .download-link i {
+            font-size: 1.1rem;
+        }
+
+        .download-link:hover {
+            background: linear-gradient(145deg, #0a5a7a, #2a80b0);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 25px rgba(0, 50, 80, 0.4);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        /* قائمة التخصصات المنبثقة - تظهر فوق كل المحتوى */
+        .specialty-menu {
+            position: absolute;
+            left: 1.8rem;
+            bottom: 100%;  /* تظهر فوق الزر وليس أسفله */
+            margin-bottom: 0.5rem;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 15px 30px rgba(0, 40, 60, 0.25);
+            padding: 0.8rem;
+            z-index: 1000;  /* قيمة عالية جداً لتظهر فوق كل شيء */
+            min-width: 200px;
+            display: none;
+            border: 2px solid #b68b40;
+        }
+
+        .specialty-menu.show {
+            display: block;
+        }
+
+        .specialty-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #05445E;
+            font-weight: 600;
+        }
+
+        .specialty-item:hover {
+            background: #f0f7ff;
+            transform: translateX(-5px);
+        }
+
+        .specialty-item i {
+            color: #b68b40;
+            font-size: 1.1rem;
+        }
+
+        /* أيقونة الملف */
+        .file-icon {
+            color: #b68b40;
+            margin-left: 1rem;
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* ملاحظات إضافية */
+        .notes-section {
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            background: rgba(182, 139, 64, 0.08);
+            border-radius: 50px;
+            border: 1px dashed #b68b40;
+        }
+
+        .notes-section p {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #05445E;
+            font-size: 1rem;
+        }
+
+        .notes-section i {
+            color: #b68b40;
+            font-size: 1.2rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #205b78;
+            font-size: 0.95rem;
+        }
+
+        /* تحسينات للهاتف */
+        @media (max-width: 600px) {
+            .logo-header { padding: 1rem; }
+            .logo-header img { max-height: 70px; }
+            
+            .intro-text { 
+                font-size: 1.3rem; 
+                padding: 0.8rem 1.2rem;
+            }
+            .intro-text span { font-size: 1.5rem; }
+            
+            .forms-card { 
+                padding: 1.5rem 1rem; 
+                border-radius: 40px;
+            }
+            .card-header h2 { font-size: 1.4rem; }
+            .card-header i { font-size: 1.5rem; padding: 0.5rem; }
+            
+            .forms-table td {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .forms-table td:first-child {
+                width: 65%;
+            }
+            
+            .download-link {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+                gap: 0.3rem;
+            }
+            
+            .download-link i {
+                font-size: 0.8rem;
+            }
+            
+            .file-icon { font-size: 0.9rem; margin-left: 0.5rem; }
+            .forms-count { font-size: 0.8rem; padding: 0.1rem 0.6rem; }
+            
+            .specialty-menu {
+                left: 0.5rem;
+                min-width: 160px;
+                bottom: auto;
+                top: 100%;
+                margin-top: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .forms-table td {
+                display: block;
+                width: 100%;
+                text-align: right;
+            }
+            
+            .forms-table td:first-child {
+                border-radius: 30px 30px 0 0;
+                padding-bottom: 0.2rem;
+                width: 100%;
+            }
+            
+            .forms-table td:last-child {
+                border-radius: 0 0 30px 30px;
+                padding-top: 0.2rem;
+                text-align: center;
+            }
+            
+            .download-link {
+                width: 100%;
+                justify-content: center;
+                padding: 0.6rem;
+            }
+            
+            .specialty-menu {
+                position: static;
+                width: 100%;
+                margin-top: 0.5rem;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر بالشعار -->
+    <div class="logo-header">
+        <img src="https://i.servimg.com/u/f52/20/64/69/74/11110010.png" alt="كلية النهضة الجديدة" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22100%22%20viewBox%3D%220%200%20300%20100%22%3E%3Crect%20width%3D%22300%22%20height%3D%22100%22%20fill%3D%22%230a3a5c%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2265%22%20font-family%3D%22Arial%22%20font-size%3D%2236%22%20fill%3D%22%23ffffff%22%20font-weight%3D%22bold%22%3E%D9%83%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%86%D9%87%D8%B6%D8%A9%3C%2Ftext%3E%3C%2Fsvg%3E';">
+    </div>
+
+    <!-- النص التعريفي تحت الشعار -->
+    <div class="intro-text">
+        <i class="fas fa-file-alt"></i>
+        <span>📋</span> النماذج الإدارية الشاملة <span>📋</span>
+        <i class="fas fa-download"></i>
+    </div>
+
+    <div class="main-container">
+        <!-- بطاقة النماذج -->
+        <div class="forms-card">
+            <div class="card-header">
+                <i class="fas fa-folder-open"></i>
+                <h2>جميع النماذج المتاحة <span class="forms-count">22 نموذج</span></h2>
+            </div>
+
+            <!-- جدول النماذج -->
+            <table class="forms-table">
+                <!-- النماذج السابقة + الجديدة -->
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        طلب التحاق للدراسة بالكلية
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('التحاق', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        بطاقة تنزيل مقررات دراسية
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('تنزيل_مقررات', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج حذف وإضافة مقررات دراسية
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('حذف_وإضافة', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج انسحاب من مقررات دراسية
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('انسحاب', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج إقرار وتعهد
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('اقرار_وتعهد', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        بطاقة تنزيل مقررات طالب جديد
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('تنزيل_طالب_جديد', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج تجديد قيد
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('تجديد_قيد', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج التحويل أو تغيير تخصص (Transfer Form)
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('تحويل_تخصص', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج إخلاء الطرف
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('اخلاء_طرف', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        سحب ملف شخصي
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('سحب_ملف', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نماذج طلب التدريب (Internship Application)
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('طلب_تدريب', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج إثبات مستوى
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('اثبات_مستوى', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج إصدار البطاقة الجامعية (ID Card)
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('اصدار_بطاقة', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        طلب إجراء امتحان غير مكمّل
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('امتحان_غير_مكمل', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج طلب إيقاف قيد
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('ايقاف_قيد', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج طلب كشف الدرجات
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('كشف_درجات', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج طلب تسجيل بحث تخرج
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('تسجيل_بحث_تخرج', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج تقرير الانتهاء من إعداد الرسالة أو الأطروحة
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('انتهاء_رسالة', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج تسليم واستلام بحوث التخرج المطبوعة
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('تسليم_بحوث', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج طلب إفادة تخرج
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('افادة_تخرج', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        نموذج راحة طبية
+                    </td>
+                    <td>
+                        <button class="download-link" onclick="downloadForm('راحة_طبية', event)">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </td>
+                </tr>
+                <!-- نموذج سجل التدريب الميداني أصبح الأخير -->
+                <tr>
+                    <td>
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        <span style="color: #b68b40; font-weight: bold;">◈</span> 
+                        نموذج سجل التدريب الميداني (Logbook) حسب التخصص
+                    </td>
+                    <td style="position: relative;">
+                        <button class="download-link" onclick="toggleSpecialtyMenu(event)">
+                            <i class="fas fa-list"></i> اختر التخصص
+                        </button>
+                        <!-- قائمة التخصصات المنبثقة - تظهر فوق الزر -->
+                        <div class="specialty-menu" id="logbookMenu">
+                            <div class="specialty-item" onclick="downloadLogbook('pharmacy', event)">
+                                <i class="fas fa-pills"></i>
+                                الصيدلة
+                            </div>
+                            <div class="specialty-item" onclick="downloadLogbook('medlab', event)">
+                                <i class="fas fa-microscope"></i>
+                                المختبرات الطبية
+                            </div>
+                            <div class="specialty-item" onclick="downloadLogbook('nursing', event)">
+                                <i class="fas fa-user-nurse"></i>
+                                التمريض
+                            </div>
+                            <div class="specialty-item" onclick="downloadLogbook('hadm', event)">
+                                <i class="fas fa-chart-line"></i>
+                                الإدارة الصحية
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- ملاحظات إضافية -->
+            <div class="notes-section">
+                <p>
+                    <i class="fas fa-info-circle"></i>
+                    جميع النماذج بصيغة PDF قابلة للطباعة والتعبئة
+                </p>
+                <p style="margin-top: 0.5rem;">
+                    <i class="fas fa-clock"></i>
+                    آخر تحديث: الفصل الدراسي الثاني 2025
+                </p>
+                <p style="margin-top: 0.5rem;">
+                    <i class="fas fa-check-circle"></i>
+                    إجمالي النماذج المتاحة: 22 نموذج إداري
+                </p>
+                <p style="margin-top: 0.5rem; color: #b68b40;">
+                    <i class="fas fa-star"></i>
+                    نموذج سجل التدريب متوفر بأربعة تخصصات منفصلة (آخر نموذج)
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© كلية النهضة الجديدة – جميع الحقوق محفوظة</p>
+        </div>
+    </div>
+
+    <script>
+        // دالة إظهار/إخفاء قائمة التخصصات
+        function toggleSpecialtyMenu(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const menu = document.getElementById('logbookMenu');
+            menu.classList.toggle('show');
+            
+            // إغلاق القائمة عند النقر في أي مكان آخر
+            if (menu.classList.contains('show')) {
+                setTimeout(() => {
+                    document.addEventListener('click', function closeMenu(e) {
+                        if (!menu.contains(e.target) && !e.target.classList.contains('download-link')) {
+                            menu.classList.remove('show');
+                            document.removeEventListener('click', closeMenu);
+                        }
+                    });
+                }, 100);
+            }
+        }
+
+        // دالة تحميل سجل التدريب حسب التخصص
+        function downloadLogbook(specialty, event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const specialtyNames = {
+                'pharmacy': 'الصيدلة',
+                'medlab': 'المختبرات الطبية',
+                'nursing': 'التمريض',
+                'hadm': 'الإدارة الصحية'
+            };
+            
+            const messages = {
+                'pharmacy': 'سيتم تحميل سجل التدريب الميداني لقسم الصيدلة قريباً',
+                'medlab': 'سيتم تحميل سجل التدريب الميداني لقسم المختبرات الطبية قريباً',
+                'nursing': 'سيتم تحميل سجل التدريب الميداني لقسم التمريض قريباً',
+                'hadm': 'سيتم تحميل سجل التدريب الميداني لقسم الإدارة الصحية قريباً'
+            };
+            
+            alert(messages[specialty]);
+            
+            // إخفاء القائمة بعد الاختيار
+            document.getElementById('logbookMenu').classList.remove('show');
+            
+            // هنا يمكنك وضع روابط التحميل الحقيقية حسب التخصص
+            // switch(specialty) {
+            //     case 'pharmacy': window.location.href = 'رابط_سجل_الصيدلة.pdf'; break;
+            //     case 'medlab': window.location.href = 'رابط_سجل_المختبرات.pdf'; break;
+            //     case 'nursing': window.location.href = 'رابط_سجل_التمريض.pdf'; break;
+            //     case 'hadm': window.location.href = 'رابط_سجل_الادارة.pdf'; break;
+            // }
+        }
+
+        // دالة محاكاة تحميل باقي النماذج
+        function downloadForm(formName, event) {
+            event.preventDefault();
+            
+            const messages = {
+                'التحاق': 'سيتم تحميل نموذج طلب الالتحاق قريباً',
+                'تنزيل_مقررات': 'سيتم تحميل بطاقة تنزيل المقررات قريباً',
+                'حذف_وإضافة': 'سيتم تحميل نموذج حذف وإضافة المقررات قريباً',
+                'انسحاب': 'سيتم تحميل نموذج الانسحاب من المقررات قريباً',
+                'اقرار_وتعهد': 'سيتم تحميل نموذج الإقرار والتعهد قريباً',
+                'تنزيل_طالب_جديد': 'سيتم تحميل بطاقة تنزيل مقررات طالب جديد قريباً',
+                'تجديد_قيد': 'سيتم تحميل نموذج تجديد القيد قريباً',
+                'تحويل_تخصص': 'سيتم تحميل نموذج التحويل أو تغيير التخصص قريباً',
+                'اخلاء_طرف': 'سيتم تحميل نموذج إخلاء الطرف قريباً',
+                'سحب_ملف': 'سيتم تجهيز نموذج سحب الملف الشخصي قريباً',
+                'طلب_تدريب': 'سيتم تحميل نماذج طلب التدريب قريباً',
+                'اثبات_مستوى': 'سيتم تحميل نموذج إثبات المستوى قريباً',
+                'اصدار_بطاقة': 'سيتم تحميل نموذج إصدار البطاقة الجامعية قريباً',
+                'امتحان_غير_مكمل': 'سيتم تحميل طلب إجراء امتحان غير مكمّل قريباً',
+                'ايقاف_قيد': 'سيتم تحميل نموذج طلب إيقاف قيد قريباً',
+                'كشف_درجات': 'سيتم تحميل نموذج طلب كشف الدرجات قريباً',
+                'تسجيل_بحث_تخرج': 'سيتم تحميل نموذج طلب تسجيل بحث تخرج قريباً',
+                'انتهاء_رسالة': 'سيتم تحميل نموذج تقرير الانتهاء من الرسالة قريباً',
+                'تسليم_بحوث': 'سيتم تحميل نموذج تسليم واستلام بحوث التخرج قريباً',
+                'افادة_تخرج': 'سيتم تحميل نموذج طلب إفادة تخرج قريباً',
+                'راحة_طبية': 'سيتم تحميل نموذج الراحة الطبية قريباً'
+            };
+            
+            alert(messages[formName] || 'جاري تجهيز النموذج للتحميل');
+        }
+    </script>
+</body>
+</html>

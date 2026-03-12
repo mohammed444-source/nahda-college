@@ -1,0 +1,619 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<title>كلية النهضة الجديدة</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+<style>
+
+body{
+.card p{
+font-family:'Cairo', sans-serif;
+font-weight:700;
+font-size:18px;
+}
+}
+body{
+margin:0;
+font-family:Cairo;
+direction:rtl;
+background:#f2f6ff;
+overflow-x:hidden;
+}
+
+
+        /* Header Style */
+        .header {
+            background: linear-gradient(135deg, #0b3b5c 0%, #1a5f7a 100%);
+            color: white;
+            padding: 30px 0;
+            border-radius: 0 0 50px 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+        }
+        
+        /* Cover Image Section */
+        .cover-image {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .cover-image h2 {
+            color: #0b3b5c;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            border-bottom: 4px solid #1a5f7a;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+ 
+        .cover-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+.card p{
+font-family:'Cairo', sans-serif;
+font-weight:700;
+font-size:18px;
+}
+
+/* الخلفية الطبية */
+
+.medical-bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:url("https://i.servimg.com/u/f52/20/64/69/74/1aa_aa10.jpg");
+background-size:cover;
+opacity:0.07;
+z-index:-1;
+}
+
+/* القائمة الجانبية */
+
+.menu-btn{
+position:fixed;
+right:15px;
+top:15px;
+background:#1976d2;
+color:white;
+border:none;
+padding:10px;
+font-size:20px;
+border-radius:6px;
+z-index:1000;
+cursor:pointer;
+}
+
+.sidebar{
+height:100%;
+width:0;
+position:fixed;
+right:0;
+top:0;
+background:#0d47a1;
+overflow-x:hidden;
+transition:0.4s;
+padding-top:60px;
+z-index:999;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:15px 25px;
+text-decoration:none;
+font-size:16px;
+}
+
+.sidebar a:hover{
+background:#1565c0;
+}
+
+/* اللوجو */
+
+.logo-wrap{
+position:relative;
+width:340px;
+max-width:85%;
+margin:30px auto;
+}
+
+.logo-wrap img{
+width:100%;
+display:block;
+}
+
+/* الضوء الذهبي */
+
+.logo-wrap::after{
+
+content:"";
+position:absolute;
+top:0;
+left:-120%;
+width:20%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,215,0,0.9),transparent);
+transform:skewX(-20deg);
+animation:goldLight 3s infinite;
+
+}
+
+@keyframes goldLight{
+
+0%{left:-120%;}
+100%{left:140%;}
+
+}
+
+/* البحث */
+
+.search-box{
+
+width:85%;
+max-width:500px;
+margin:auto;
+
+}
+
+.search-box input{
+
+width:100%;
+padding:12px;
+border-radius:25px;
+border:1px solid #ccc;
+
+}
+
+/* شريط الأخبار */
+
+.news-container{
+
+width:90%;
+max-width:1000px;
+margin:25px auto;
+display:flex;
+align-items:center;
+background:linear-gradient(90deg,#0d47a1,#1976d2);
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.2);
+border:2px solid gold;
+overflow:hidden;
+
+}
+
+.news-title{
+
+background:linear-gradient(45deg,gold,#ffc107);
+color:#000;
+padding:12px 20px;
+font-weight:bold;
+white-space:nowrap;
+
+}
+
+.news-box{
+
+flex:1;
+overflow:hidden;
+padding:10px;
+
+}
+
+#newsTicker{
+
+white-space:nowrap;
+display:inline-block;
+padding-left:100%;
+color:white;
+font-size:15px;
+animation:scrollNews 35s linear infinite;
+
+}
+
+@keyframes scrollNews{
+
+0%{
+transform:translateX(-100%);
+}
+
+100%{
+transform:translateX(100%);
+}
+
+}
+
+#newsTicker{
+
+white-space:nowrap;
+display:inline-block;
+padding-right:100%;
+color:white;
+font-size:15px;
+animation:scrollNews 35s linear infinite;
+
+}
+/* معرض الصور */
+.swiper{
+width:100%;
+max-width:1200px;
+height:450px;
+margin:auto;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.swiper-slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.swiper-button-next,
+.swiper-button-prev{
+color:white;
+}
+
+.swiper-pagination-bullet{
+background:white;
+}
+/* الأقسام */
+
+.sections{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+padding:40px;
+
+}
+
+.card{
+
+padding:25px;
+border-radius:12px;
+color:white;
+text-align:center;
+cursor:pointer;
+
+}
+
+.card i{
+
+font-size:30px;
+margin-bottom:10px;
+
+}
+
+.c1{background:#ff7043}
+.c2{background:#29b6f6}
+.c3{background:#7e57c2}
+.c4{background:#66bb6a}
+.c5{background:#ffa726}
+.c6{background:#ec407a}
+.c7{background:#42a5f5}
+.c8{background:#26a69a}
+.c9{background:#8d6e63}
+.c10{background:#9ccc65}
+.c11{background:#fdd835}
+.c12{background:#ff7043}
+/* العداد */
+
+.counter{
+
+display:flex;
+justify-content:space-around;
+background:white;
+padding:30px;
+
+}
+
+.counter h2{
+
+font-size:35px;
+color:#1976d2;
+
+}
+
+footer{
+
+background:#0d47a1;
+color:white;
+text-align:center;
+padding:15px;
+
+}
+/* Contact & Footer */
+        .contact-info {
+            background: linear-gradient(135deg, #0b3b5c, #1a5f7a);
+            color: white;
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .contact-info h2 {
+            font-size: 2.2em;
+            margin-bottom: 25px;
+        }
+        .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            font-size: 1.2em;
+        }
+        .contact-details a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+        .contact-details a:hover {
+            border-bottom-color: white;
+        }
+
+</style>
+</head>
+<div class="header">
+
+      <div class="cover-image-container">
+<img src="https://i.servimg.com/u/f52/20/64/69/74/11110010.png">
+</div>
+</div>
+<div class="medical-bg"></div>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<nav id="sidebar" class="sidebar">
+<a href="index.html">الرئيسية</a>
+<a href="pages/about.html"> حول الكلية</a>
+<a href="pages/departments.html">الأقسام</a>
+<a href="pages/lectures.html">المحاضرات</a>
+<a href="pages/schedule.html">الجداول</a>
+<a href="pages/results.html">النتائج</a>
+<a href="pages/library.html">مكتبة الكلية</a>
+<a href="pages/activities.html">الأنشطة الطلابية</a>
+<a href="pages/admissions.html">التسجيل والقبول</a>
+<a href="pages/alumni.html">الخريجين</a>
+<a href="pages/conferences.html">المؤتمرات</a>
+<a href="pages/sustainability.html">التنمية المستدامة</a>
+<a href="pages/forms.html">النماذج الإدارية</a>
+
+</nav>
+
+<!-- اللوجو -->
+
+  
+
+<!-- البحث -->
+
+<div class="search-box">
+
+<input type="text" placeholder="ابحث في موقع الكلية">
+
+</div>
+
+<!-- شريط الأخبار -->
+
+<div class="news-container">
+
+<div class="news-title">
+📰 أخبار الكلية
+</div>
+
+<div class="news-box">
+
+<div id="newsTicker">جاري تحميل الأخبار...</div>
+
+</div>
+
+</div>
+
+<!-- معرض الصور -->
+<div class="swiper mySwiper">
+
+<div class="swiper-wrapper">
+
+<div class="swiper-slide">
+<img src="images/1.png">
+</div>
+
+<div class="swiper-slide">
+<img src="images/2.png">
+</div>
+
+<div class="swiper-slide">
+<img src="images/3.jpg">
+</div>
+
+<div class="swiper-slide">
+<img src="images/4.png">
+</div>
+
+</div>
+
+<div class="swiper-pagination"></div>
+
+<div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
+
+</div>
+
+<!-- الأقسام -->
+
+<div class="sections">
+<div class="card c1" onclick="location.href='pages/about.html'"><i class="fa-solid fa-building"></i><p>حول الكلية</p></div>
+
+<div class="card c2" onclick="location.href='pages/departments.html'"><i class="fa-solid fa-building"></i><p>الأقسام</p></div>
+
+<div class="card c3" onclick="location.href='pages/lectures.html'"><i class="fa-solid fa-book"></i><p>المحاضرات</p></div>
+
+<div class="card c4" onclick="location.href='pages/schedule.html'"><i class="fa-solid fa-calendar"></i><p>الجداول</p></div>
+
+<div class="card c5" onclick="location.href='pages/results.html'"><i class="fa-solid fa-chart-line"></i><p>النتائج</p></div>
+
+<div class="card c6" onclick="location.href='pages/library.html'"><i class="fa-solid fa-book-open"></i><p>مكتبة الكلية</p></div>
+
+<div class="card c7" onclick="location.href='pages/activities.html'"><i class="fa-solid fa-users"></i><p>الأنشطة</p></div>
+
+<div class="card c8" onclick="location.href='pages/admissions.html'"><i class="fa-solid fa-user-check"></i><p>التسجيل والقبول</p></div>
+
+<div class="card c9" onclick="location.href='pages/alumni.html'"><i class="fa-solid fa-user-graduate"></i><p>الخريجين</p></div>
+
+<div class="card c10" onclick="location.href='pages/conferences.html'"><i class="fa-solid fa-microscope"></i><p>المؤتمرات</p></div>
+
+<div class="card c11" onclick="location.href='pages/sustainability.html'"><i class="fa-solid fa-leaf"></i><p>التنمية المستدامة</p></div>
+
+<div class="card c12" onclick="location.href='pages/forms.html'"><i class="fa-solid fa-file-lines"></i><p>النماذج الإدارية</p></div>
+
+</div>
+
+<!-- العداد -->
+
+<div class="counter">
+
+<div>
+
+<h2 id="students">0</h2>
+<p>الطلاب</p>
+
+</div>
+
+<div>
+
+<h2 id="staff">0</h2>
+<p>هيئة التدريس</p>
+
+</div>
+
+<div>
+
+<h2 id="graduates">0</h2>
+<p>الخريجون</p>
+
+</div>
+
+</div>
+
+
+    <!-- Contact Information -->
+    <section class="contact-info">
+        <h2><i class="fas fa-address-card"></i> معلومات التواصل</h2>
+        <div class="contact-details">
+            <div><i class="fas fa-phone-alt"></i> 0919996700 - 0917853267 - 0922535355</div>
+            <div><i class="fas fa-envelope"></i> <a href="mailto:ALNAHADA1313@gmail.com">ALNAHADA1313@gmail.com</a></div>
+            <div><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/1313alnahda.aljadida" target="_blank">صفحتنا على فيسبوك</a></div>
+        </div>
+    </section>
+  <!-- Footer -->
+    <footer class="footer">
+        <p>كلية النهضة الجديدة للتقنية الطبية والتمريض © 2026 | جميع الحقوق محفوظة</p>
+        <p>مدينة طبرق - ليبيا</p>
+    </footer>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+
+var swiper = new Swiper(".mySwiper", {
+
+loop:true,
+
+autoplay:{
+delay:4000,
+disableOnInteraction:false,
+},
+
+pagination:{
+el:".swiper-pagination",
+clickable:true,
+},
+
+navigation:{
+nextEl:".swiper-button-next",
+prevEl:".swiper-button-prev",
+},
+
+});
+
+</script>
+<script>
+
+/* القائمة الجانبية */
+
+function toggleMenu(){
+
+let menu=document.getElementById("sidebar");
+
+menu.style.width = menu.style.width==="250px" ? "0":"250px";
+
+}
+
+/* العداد */
+
+function counter(id,end){
+
+let obj=document.getElementById(id);
+
+let count=0;
+
+let timer=setInterval(function(){
+
+count++;
+
+obj.innerHTML=count;
+
+if(count==end) clearInterval(timer);
+
+},5);
+
+}
+
+counter("students",356);
+counter("staff",37);
+counter("graduates",186);
+
+/* جلب الأخبار من Google Sheets */
+
+const sheetURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vRibiMH1M0n1tSV0CfL-0vFHAfqDG2uGUs6nKFFvG9bWt-l-AxRZ0ip-v1ZHU7RtyHdYcX9iYoxZYd9/pub?output=csv";
+
+fetch(sheetURL)
+
+.then(res=>res.text())
+
+.then(data=>{
+
+let rows=data.split("\n");
+
+let news=rows.slice(1)
+
+.map(r=>r.trim())
+
+.filter(r=>r!=="")
+
+.join(" 🔶 ");
+
+document.getElementById("newsTicker").innerText=news;
+
+});
+
+</script>
+
+</body>
+</html>
