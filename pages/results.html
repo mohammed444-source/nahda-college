@@ -305,8 +305,63 @@ input:focus{
 .floating {
   animation: float 3s ease-in-out infinite;
 }
+
+/* القائمة الجانبية */
+
+.menu-btn{
+position:fixed;
+right:15px;
+top:15px;
+background:#1976d2;
+color:white;
+border:none;
+padding:10px;
+font-size:20px;
+border-radius:6px;
+z-index:1000;
+cursor:pointer;
+}
+
+.sidebar{
+height:100%;
+width:0;
+position:fixed;
+right:0;
+top:0;
+background:#0d47a1;
+overflow-x:hidden;
+transition:0.4s;
+padding-top:60px;
+z-index:999;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:15px 25px;
+text-decoration:none;
+font-size:16px;
+}
+
+.sidebar a:hover{
+background:#1565c0;
+}
+
 </style>
 </head>
+
+    <div class="medical-bg"></div>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<nav id="sidebar" class="sidebar">
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/index.html">الرئيسية</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/about.html"> حول الكلية</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/departments.html">الأقسام</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/lectures.html">المحاضرات</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/schedule.html">الجداول</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/results.html">النتائج</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/forms.html">النماذج الإدارية</a>
+</nav>
+
 <body>
 <!-- Header Section with Logo -->
 <div class="header">
@@ -428,6 +483,20 @@ async function getResult() {
     }
 }
 </script>
+
+<script>
+
+/* القائمة الجانبية */
+
+function toggleMenu(){
+
+let menu=document.getElementById("sidebar");
+
+menu.style.width = menu.style.width==="250px" ? "0":"250px";
+
+}
+</script>
+
 
 </body>
 </html>

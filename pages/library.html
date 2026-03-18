@@ -1,1 +1,751 @@
-library.html
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>كلية النهضة الجديدة – المكتبة الرقمية</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(165deg, #eef5fc 0%, #f8fbfe 80%);
+            min-height: 100vh;
+            color: #022b40;
+            padding: 0;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+/* القائمة الجانبية */
+
+.menu-btn{
+position:fixed;
+right:15px;
+top:15px;
+background:#1976d2;
+color:white;
+border:none;
+padding:10px;
+font-size:20px;
+border-radius:6px;
+z-index:1000;
+cursor:pointer;
+}
+
+.sidebar{
+height:100%;
+width:0;
+position:fixed;
+right:0;
+top:0;
+background:#0d47a1;
+overflow-x:hidden;
+transition:0.4s;
+padding-top:60px;
+z-index:999;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:15px 25px;
+text-decoration:none;
+font-size:16px;
+}
+
+.sidebar a:hover{
+background:#1565c0;
+}
+
+        /* الخلفية الزرقاء للشعار */
+        .logo-header {
+            background: #0a3a5c;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .logo-header img {
+            max-width: 100%;
+            height: auto;
+            max-height: 100px;
+            object-fit: contain;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 1.5rem 2rem 1.5rem;
+        }
+
+        /* النص التعريفي تحت الشعار */
+        .intro-text {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #05445E;
+            background: rgba(255,255,255,0.7);
+            padding: 1.2rem 2.5rem;
+            border-radius: 80px;
+            display: inline-block;
+            width: auto;
+            margin-right: auto;
+            margin-left: auto;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            border: 1px solid #b68b40;
+            backdrop-filter: blur(10px);
+        }
+
+        .intro-text span {
+            color: #b68b40;
+            font-size: 2.5rem;
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+
+        .intro-text i {
+            color: #b68b40;
+            margin: 0 0.7rem;
+        }
+
+        /* تبويبات PDF وفيديو */
+        .library-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 90px;
+            box-shadow: 0 15px 30px -8px rgba(21, 60, 89, 0.3);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .library-tab {
+            flex: 1 1 200px;
+            min-width: 160px;
+            padding: 1.1rem 1.5rem;
+            border: none;
+            border-radius: 70px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 6px 14px rgba(0, 30, 50, 0.2);
+        }
+
+        .library-tab.active {
+            border: 3px solid white;
+            box-shadow: 0 0 0 4px #f4cda6;
+            transform: scale(1.02);
+        }
+
+        .tab-pdf { background: linear-gradient(145deg, #9E4244, #C46B6E); }
+        .tab-video { background: linear-gradient(145deg, #16634D, #2F8F74); }
+
+        /* أزرار الأقسام */
+        .dept-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .dept-btn {
+            flex: 1 1 180px;
+            min-width: 140px;
+            padding: 1rem 1rem;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 30, 50, 0.2);
+            border: 2px solid transparent;
+        }
+
+        .dept-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .dept-btn.active {
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #f4cda6;
+        }
+
+        .dept-pharmacy { background: linear-gradient(145deg, #9E4244, #C46B6E); }
+        .dept-medlab { background: linear-gradient(145deg, #B85C2A, #D9824A); }
+        .dept-nursing { background: linear-gradient(145deg, #13678A, #45A4BF); }
+        .dept-hadm { background: linear-gradient(145deg, #16634D, #2F8F74); }
+
+        /* شريط البحث */
+        .search-section {
+            background: white;
+            border-radius: 60px;
+            padding: 1.2rem 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,40,60,0.1);
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #b68b40;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 3rem 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid #e0e9f2;
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        /* شبكة المصادر */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 40, 60, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e0e9f2;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 60, 90, 0.15);
+            border-color: #b68b40;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #b68b40, #dba959);
+        }
+
+        .resource-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background: rgba(182, 139, 64, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b68b40;
+            font-size: 1.5rem;
+        }
+
+        .resource-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #05445E;
+            margin-bottom: 0.3rem;
+        }
+
+        .resource-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed #e0e9f2;
+        }
+
+        .resource-meta i {
+            color: #b68b40;
+            margin-left: 0.3rem;
+            width: 16px;
+        }
+
+        .resource-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .resource-tag {
+            background: #f0f7fc;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #05445E;
+            font-weight: 600;
+        }
+
+        .resource-tag i {
+            color: #b68b40;
+            margin-left: 0.3rem;
+        }
+
+        /* زر التحميل */
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(145deg, #05445E, #1E6F9F);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .resource-link i {
+            font-size: 1.1rem;
+        }
+
+        .resource-link:hover {
+            background: linear-gradient(145deg, #0a5a7a, #2a80b0);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 70, 100, 0.3);
+        }
+
+        .video-link {
+            background: linear-gradient(145deg, #16634D, #2F8F74);
+        }
+
+        .video-link:hover {
+            background: linear-gradient(145deg, #1d7e62, #3daa88);
+        }
+
+        /* رسالة عدم وجود نتائج */
+        .no-results {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 50px;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: #b68b40;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #205b78;
+        }
+
+        @media (max-width: 600px) {
+            .logo-header { padding: 1rem; }
+            .logo-header img { max-height: 70px; }
+            .intro-text { font-size: 1.5rem; }
+            .dept-btn { min-width: 120px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر بالشعار -->
+    <div class="logo-header">
+        <img src="https://i.servimg.com/u/f52/20/64/69/74/11110010.png" alt="كلية النهضة الجديدة" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22100%22%20viewBox%3D%220%200%20300%20100%22%3E%3Crect%20width%3D%22300%22%20height%3D%22100%22%20fill%3D%22%230a3a5c%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2265%22%20font-family%3D%22Arial%22%20font-size%3D%2236%22%20fill%3D%22%23ffffff%22%20font-weight%3D%22bold%22%3E%D9%83%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%86%D9%87%D8%B6%D8%A9%3C%2Ftext%3E%3C%2Fsvg%3E';">
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <nav id="sidebar" class="sidebar">
+        <a href="index.html">الرئيسية</a>
+        <a href="pages/about.html"> حول الكلية</a>
+        <a href="pages/departments.html">الأقسام</a>
+        <a href="pages/lectures.html">المحاضرات</a>
+        <a href="pages/schedule.html">الجداول</a>
+        <a href="pages/results.html">النتائج</a>
+        <a href="pages/forms.html">النماذج الإدارية</a>
+    </nav>
+
+    <!-- النص التعريفي -->
+    <div class="intro-text">
+        <i class="fas fa-book-open"></i>
+        <span>📚</span> المكتبة الرقمية <span>🎥</span>
+        <i class="fas fa-video"></i>
+    </div>
+
+    <div class="main-container">
+        <!-- تبويبات PDF وفيديو -->
+        <div class="library-tabs">
+            <button class="library-tab tab-pdf active" onclick="switchType('pdf')">
+                <i class="fas fa-file-pdf"></i> الكتب والمراجع
+            </button>
+            <button class="library-tab tab-video" onclick="switchType('video')">
+                <i class="fas fa-video"></i> المحاضرات المسجلة
+            </button>
+        </div>
+
+        <!-- أزرار الأقسام -->
+        <div class="dept-tabs">
+            <button class="dept-btn dept-pharmacy active" onclick="switchDept('pharmacy')">
+                <i class="fas fa-pills"></i> الصيدلة
+            </button>
+            <button class="dept-btn dept-medlab" onclick="switchDept('medlab')">
+                <i class="fas fa-microscope"></i> المختبرات الطبية
+            </button>
+            <button class="dept-btn dept-nursing" onclick="switchDept('nursing')">
+                <i class="fas fa-user-nurse"></i> التمريض
+            </button>
+            <button class="dept-btn dept-hadm" onclick="switchDept('hadm')">
+                <i class="fas fa-chart-line"></i> الإدارة الصحية
+            </button>
+        </div>
+
+        <!-- شريط البحث -->
+        <div class="search-section">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="ابحث عن كتاب أو محاضرة..." onkeyup="filterResources()">
+            </div>
+        </div>
+
+        <!-- شبكة المصادر -->
+        <div class="resources-grid" id="resourcesGrid">
+            <div class="no-results">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>جاري تحميل المكتبة من 8 صفحات في Google Sheets...</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© كلية النهضة الجديدة – يتم تحديث البيانات تلقائياً من Google Sheets</p>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // 1. إعدادات Google Sheets - معرف الشيت الأساسي
+        // ============================================================
+        const SHEET_ID = '2PACX-1vRAKrpWemxvYjDLUwCZ3LCf7QNm94FzbfJqYIqM8H4BNcf2ZlRC6-pzGPRkSSo--DI2O1xaadei21A6';
+        
+        // ============================================================
+        // 2. معرفات الصفحات (GIDs) - يجب استبدالها بالقيم الصحيحة
+        // ============================================================
+        // ⚠️ هام: استبدل قيم GID أدناه بالأرقام الصحيحة لكل صفحة
+        const SHEET_GIDS = {
+            // صفحات الكتب (PDF)
+            pharmacy_pdf: '453833646',        // استبدل بـ GID صفحة كتب الصيدلة
+            medlab_pdf: '1049568452',          // استبدل بـ GID صفحة كتب المختبرات
+            nursing_pdf: '1919400589',         // استبدل بـ GID صفحة كتب التمريض
+            hadm_pdf: '2074478512',            // استبدل بـ GID صفحة كتب الإدارة الصحية
+            
+            // صفحات الفيديوهات
+            pharmacy_video: '489923448',       // استبدل بـ GID صفحة فيديوهات الصيدلة
+            medlab_video: '624657493',         // استبدل بـ GID صفحة فيديوهات المختبرات
+            nursing_video: '1691361023',        // استبدل بـ GID صفحة فيديوهات التمريض
+            hadm_video: '853592833'            // استبدل بـ GID صفحة فيديوهات الإدارة الصحية
+        };
+
+        // ============================================================
+        // 3. المتغيرات العامة
+        // ============================================================
+        let currentType = 'pdf';
+        let currentDept = 'pharmacy';
+        let searchTerm = '';
+        let allData = {
+            pharmacy: { pdf: [], video: [] },
+            medlab: { pdf: [], video: [] },
+            nursing: { pdf: [], video: [] },
+            hadm: { pdf: [], video: [] }
+        };
+        let isLoading = true;
+
+        // ============================================================
+        // 4. دالة جلب البيانات من صفحة محددة
+        // ============================================================
+        async function fetchSheetPage(gid, type, dept) {
+            if (!gid || gid === '0') {
+                console.warn(`⚠️ لم يتم تعيين GID لصفحة ${dept}_${type}`);
+                return [];
+            }
+            
+            const url = `https://docs.google.com/spreadsheets/d/e/${SHEET_ID}/pub?output=csv&gid=${gid}`;
+            
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const csvText = await response.text();
+                
+                // تحليل CSV مع التعامل مع علامات الاقتباس
+                const rows = [];
+                const lines = csvText.split('\n');
+                
+                for (let line of lines) {
+                    if (line.trim() === '') continue;
+                    
+                    // معالجة الحقول المقتبسة
+                    const matches = line.match(/(".*?"|[^,]+)(?=\s*,|\s*$)/g);
+                    if (matches) {
+                        const row = matches.map(cell => cell.replace(/^"|"$/g, '').trim());
+                        rows.push(row);
+                    }
+                }
+                
+                if (rows.length < 2) return [];
+                
+                const headers = rows[0].map(h => h.trim());
+                const items = [];
+                
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    if (row.length < 2) continue;
+                    
+                    const item = {};
+                    headers.forEach((header, index) => {
+                        if (index < row.length) {
+                            item[header] = row[index] || '';
+                        }
+                    });
+                    
+                    items.push(item);
+                }
+                
+                console.log(`✅ تم تحميل ${items.length} عنصر من ${dept}_${type}`);
+                return items;
+                
+            } catch (error) {
+                console.error(`❌ خطأ في تحميل صفحة ${dept}_${type}:`, error);
+                return [];
+            }
+        }
+
+        // ============================================================
+        // 5. دالة تحميل جميع الصفحات
+        // ============================================================
+        async function loadAllData() {
+            isLoading = true;
+            
+            // تحميل جميع الصفحات بالتوازي
+            const promises = [
+                // صفحات الكتب (PDF)
+                fetchSheetPage(SHEET_GIDS.pharmacy_pdf, 'pdf', 'pharmacy').then(data => allData.pharmacy.pdf = data),
+                fetchSheetPage(SHEET_GIDS.medlab_pdf, 'pdf', 'medlab').then(data => allData.medlab.pdf = data),
+                fetchSheetPage(SHEET_GIDS.nursing_pdf, 'pdf', 'nursing').then(data => allData.nursing.pdf = data),
+                fetchSheetPage(SHEET_GIDS.hadm_pdf, 'pdf', 'hadm').then(data => allData.hadm.pdf = data),
+                
+                // صفحات الفيديوهات
+                fetchSheetPage(SHEET_GIDS.pharmacy_video, 'video', 'pharmacy').then(data => allData.pharmacy.video = data),
+                fetchSheetPage(SHEET_GIDS.medlab_video, 'video', 'medlab').then(data => allData.medlab.video = data),
+                fetchSheetPage(SHEET_GIDS.nursing_video, 'video', 'nursing').then(data => allData.nursing.video = data),
+                fetchSheetPage(SHEET_GIDS.hadm_video, 'video', 'hadm').then(data => allData.hadm.video = data)
+            ];
+            
+            try {
+                await Promise.all(promises);
+                console.log('🎉 تم تحميل جميع البيانات:', allData);
+                isLoading = false;
+                displayResources();
+                
+            } catch (error) {
+                console.error('❌ خطأ في تحميل بعض الصفحات:', error);
+                document.getElementById('resourcesGrid').innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>حدث خطأ في تحميل البيانات</p>
+                        <p style="font-size:0.9rem; color:#666;">يرجى التأكد من نشر جميع الصفحات في Google Sheets</p>
+                        <p style="font-size:0.9rem; color:#666;">(File > Share > Publish to web)</p>
+                        <button onclick="location.reload()" style="margin-top:1rem; padding:0.5rem 2rem; background:#b68b40; color:white; border:none; border-radius:50px; cursor:pointer;">
+                            <i class="fas fa-sync-alt"></i> إعادة التحميل
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // ============================================================
+        // 6. دوال التبديل
+        // ============================================================
+        window.switchType = function(type) {
+            currentType = type;
+            document.querySelectorAll('.library-tab').forEach(tab => tab.classList.remove('active'));
+            if (type === 'pdf') {
+                document.querySelector('.tab-pdf').classList.add('active');
+            } else {
+                document.querySelector('.tab-video').classList.add('active');
+            }
+            displayResources();
+        };
+
+        window.switchDept = function(dept) {
+            currentDept = dept;
+            document.querySelectorAll('.dept-btn').forEach(btn => btn.classList.remove('active'));
+            if (dept === 'pharmacy') document.querySelector('.dept-pharmacy').classList.add('active');
+            else if (dept === 'medlab') document.querySelector('.dept-medlab').classList.add('active');
+            else if (dept === 'nursing') document.querySelector('.dept-nursing').classList.add('active');
+            else if (dept === 'hadm') document.querySelector('.dept-hadm').classList.add('active');
+            displayResources();
+        };
+
+        window.filterResources = function() {
+            searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            displayResources();
+        };
+
+        // ============================================================
+        // 7. دالة عرض المصادر
+        // ============================================================
+        function displayResources() {
+            const grid = document.getElementById('resourcesGrid');
+            
+            if (isLoading) {
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>جاري تحميل المكتبة من 8 صفحات...</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            if (!allData[currentDept] || !allData[currentDept][currentType]) {
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-database"></i>
+                        <p>لا توجد بيانات متاحة لهذا القسم</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const deptData = allData[currentDept][currentType] || [];
+            
+            const filtered = deptData.filter(item => {
+                const title = (item.title || '').toLowerCase();
+                const author = (item.author || item.instructor || '').toLowerCase();
+                return title.includes(searchTerm) || author.includes(searchTerm);
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <p>لا توجد نتائج مطابقة للبحث</p>
+                    </div>
+                `;
+                return;
+            }
+
+            if (currentType === 'pdf') {
+                grid.innerHTML = filtered.map(item => `
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <div class="resource-icon"><i class="fas fa-file-pdf"></i></div>
+                            <div class="resource-title">${item.title || 'بدون عنوان'}</div>
+                        </div>
+                        <div class="resource-meta">
+                            <span><i class="fas fa-user"></i> ${item.author || 'غير محدد'}</span>
+                            <span><i class="fas fa-calendar"></i> ${item.year || 'غير محدد'}</span>
+                        </div>
+                        <div class="resource-tags">
+                            <span class="resource-tag"><i class="fas fa-file"></i> ${item.pages || '?'} صفحة</span>
+                            <span class="resource-tag"><i class="fas fa-download"></i> ${item.downloads || '0'} تحميل</span>
+                        </div>
+                        <a href="${item.link || '#'}" class="resource-link" target="_blank" onclick="if(this.href=='#'){alert('رابط التحميل غير متوفر'); return false;}">
+                            <i class="fas fa-download"></i> تحميل الكتاب
+                        </a>
+                    </div>
+                `).join('');
+            } else {
+                grid.innerHTML = filtered.map(item => `
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <div class="resource-icon"><i class="fas fa-video"></i></div>
+                            <div class="resource-title">${item.title || 'بدون عنوان'}</div>
+                        </div>
+                        <div class="resource-meta">
+                            <span><i class="fas fa-chalkboard-teacher"></i> ${item.instructor || 'غير محدد'}</span>
+                            <span><i class="fas fa-clock"></i> ${item.duration || '?'}</span>
+                            <span><i class="fas fa-calendar"></i> ${item.year || 'غير محدد'}</span>
+                        </div>
+                        <div class="resource-tags">
+                            <span class="resource-tag"><i class="fas fa-eye"></i> ${item.views || '0'} مشاهدة</span>
+                        </div>
+                        <a href="${item.link || '#'}" class="resource-link video-link" target="_blank" onclick="if(this.href=='#'){alert('رابط المشاهدة غير متوفر'); return false;}">
+                            <i class="fas fa-play"></i> مشاهدة المحاضرة
+                        </a>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ============================================================
+        // 8. القائمة الجانبية
+        // ============================================================
+        window.toggleMenu = function() {
+            let menu = document.getElementById("sidebar");
+            menu.style.width = menu.style.width === "250px" ? "0" : "250px";
+        }
+
+        // ============================================================
+        // 9. التحميل الأولي
+        // ============================================================
+        window.onload = function() {
+            loadAllData();
+        };
+    </script>
+</body>
+</html>

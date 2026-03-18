@@ -1,1 +1,937 @@
-conferences.html
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>كلية النهضة الجديدة – المؤتمرات العلمية</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(165deg, #eef5fc 0%, #f8fbfe 80%);
+            min-height: 100vh;
+            color: #022b40;
+            padding: 0;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+/* القائمة الجانبية */
+
+.menu-btn{
+position:fixed;
+right:15px;
+top:15px;
+background:#1976d2;
+color:white;
+border:none;
+padding:10px;
+font-size:20px;
+border-radius:6px;
+z-index:1000;
+cursor:pointer;
+}
+
+.sidebar{
+height:100%;
+width:0;
+position:fixed;
+right:0;
+top:0;
+background:#0d47a1;
+overflow-x:hidden;
+transition:0.4s;
+padding-top:60px;
+z-index:999;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:15px 25px;
+text-decoration:none;
+font-size:16px;
+}
+
+.sidebar a:hover{
+background:#1565c0;
+}
+
+        /* الخلفية الزرقاء للشعار - نفس النسق */
+        .logo-header {
+            background: #0a3a5c;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .logo-header img {
+            max-width: 100%;
+            height: auto;
+            max-height: 100px;
+            object-fit: contain;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 1.5rem 2rem 1.5rem;
+        }
+
+        /* النص التعريفي تحت الشعار */
+        .intro-text {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #05445E;
+            background: rgba(255,255,255,0.7);
+            padding: 1.2rem 2.5rem;
+            border-radius: 80px;
+            display: inline-block;
+            width: auto;
+            margin-right: auto;
+            margin-left: auto;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            border: 1px solid #b68b40;
+            backdrop-filter: blur(10px);
+        }
+
+        .intro-text span {
+            color: #b68b40;
+            font-size: 2.5rem;
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+
+        .intro-text i {
+            color: #b68b40;
+            margin: 0 0.7rem;
+        }
+
+        /* تبويبات المؤتمرات */
+        .conference-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 90px;
+            box-shadow: 0 15px 30px -8px rgba(21, 60, 89, 0.3);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .conference-tab {
+            flex: 1 1 180px;
+            min-width: 150px;
+            padding: 1.1rem 1rem;
+            border: none;
+            border-radius: 70px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 6px 14px rgba(0, 30, 50, 0.2);
+            border: 2px solid transparent;
+        }
+
+        .conference-tab:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 25px -6px #022b40;
+            border-color: white;
+        }
+
+        .conference-tab.active {
+            border: 3px solid white;
+            box-shadow: 0 0 0 4px #f4cda6;
+            transform: scale(1.02);
+        }
+
+        .tab-upcoming { background: linear-gradient(145deg, #13678A, #45A4BF); }
+        .tab-past { background: linear-gradient(145deg, #16634D, #2F8F74); }
+        .tab-special { background: linear-gradient(145deg, #9E4244, #C46B6E); }
+
+        /* بطاقة المؤتمر الرئيسي */
+        .conference-card {
+            background: white;
+            border-radius: 70px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px -15px #05405b;
+            border: 1px solid rgba(255,255,255,0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .conference-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #b68b40, #dba959, #b68b40);
+        }
+
+        .conference-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .conference-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            background: rgba(182, 139, 64, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b68b40;
+            font-size: 2.5rem;
+        }
+
+        .conference-title {
+            flex: 1;
+        }
+
+        .conference-title h2 {
+            font-size: 2.2rem;
+            color: #05445E;
+            margin-bottom: 0.5rem;
+        }
+
+        .conference-title .date {
+            color: #b68b40;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .conference-title .location {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 0.3rem;
+        }
+
+        .conference-badge {
+            background: #b68b40;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* شبكة المحتوى */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: #f8faff;
+            border-radius: 50px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 40, 60, 0.08);
+            border: 1px solid #e6eef9;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 35px rgba(0, 60, 90, 0.12);
+            border-color: #b68b40;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px dotted #b68b40;
+            padding-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background: rgba(182, 139, 64, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b68b40;
+            font-size: 1.5rem;
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+            color: #05445E;
+        }
+
+        .card-content {
+            color: #05445E;
+            line-height: 1.8;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-content li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .card-content li i {
+            color: #b68b40;
+            width: 20px;
+        }
+
+        /* الجدول الزمني */
+        .timeline {
+            position: relative;
+            padding-right: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 7px;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: #b68b40;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -1.8rem;
+            top: 0.5rem;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #b68b40;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #b68b40;
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: #b68b40;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #05445E;
+        }
+
+        .timeline-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* جدول اللجان */
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .committee-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #e0e9f2;
+        }
+
+        .committee-item i {
+            color: #b68b40;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .committee-name {
+            font-weight: 700;
+            color: #05445E;
+            margin-bottom: 0.3rem;
+        }
+
+        .committee-role {
+            color: #b68b40;
+            font-size: 0.85rem;
+        }
+
+        /* روابط التحميل */
+        .download-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .download-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(145deg, #05445E, #1E6F9F);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-link i {
+            font-size: 1.1rem;
+        }
+
+        .download-link:hover {
+            background: linear-gradient(145deg, #0a5a7a, #2a80b0);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 70, 100, 0.3);
+        }
+
+        .register-link {
+            background: linear-gradient(145deg, #b68b40, #dba959);
+        }
+
+        .register-link:hover {
+            background: linear-gradient(145deg, #a07935, #c49b4a);
+        }
+
+        /* جدول الفعاليات */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .schedule-table tr {
+            border-bottom: 1px dashed #e0e9f2;
+        }
+
+        .schedule-table td {
+            padding: 1rem 0.5rem;
+        }
+
+        .schedule-time {
+            color: #b68b40;
+            font-weight: 700;
+            width: 100px;
+        }
+
+        .schedule-event {
+            font-weight: 600;
+            color: #05445E;
+        }
+
+        .schedule-location {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .schedule-speaker {
+            color: #2C6E49;
+            font-size: 0.9rem;
+        }
+
+        /* مطبوعات */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .publication-item {
+            background: white;
+            border-radius: 30px;
+            padding: 1.2rem;
+            border: 1px solid #e0e9f2;
+            transition: all 0.3s;
+        }
+
+        .publication-item:hover {
+            border-color: #b68b40;
+        }
+
+        .publication-title {
+            font-weight: 700;
+            color: #05445E;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-authors {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-link {
+            color: #b68b40;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #205b78;
+        }
+
+        @media (max-width: 600px) {
+            .logo-header { padding: 1rem; }
+            .logo-header img { max-height: 70px; }
+            .intro-text { font-size: 1.5rem; }
+            .conference-header { flex-direction: column; text-align: center; }
+            .conference-title h2 { font-size: 1.8rem; }
+            .content-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر بالشعار -->
+    <div class="logo-header">
+        <img src="https://i.servimg.com/u/f52/20/64/69/74/11110010.png" alt="كلية النهضة الجديدة" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22100%22%20viewBox%3D%220%200%20300%20100%22%3E%3Crect%20width%3D%22300%22%20height%3D%22100%22%20fill%3D%22%230a3a5c%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2265%22%20font-family%3D%22Arial%22%20font-size%3D%2236%22%20fill%3D%22%23ffffff%22%20font-weight%3D%22bold%22%3E%D9%83%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%86%D9%87%D8%B6%D8%A9%3C%2Ftext%3E%3C%2Fsvg%3E';">
+    </div>
+
+    <div class="medical-bg"></div>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<nav id="sidebar" class="sidebar">
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/index.html">الرئيسية</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/about.html"> حول الكلية</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/departments.html">الأقسام</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/lectures.html">المحاضرات</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/schedule.html">الجداول</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/results.html">النتائج</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/forms.html">النماذج الإدارية</a>
+</nav>
+
+    <!-- النص التعريفي تحت الشعار -->
+    <div class="intro-text">
+        <i class="fas fa-microphone-alt"></i>
+        <span>🎯</span> المؤتمرات العلمية <span>📅</span>
+        <i class="fas fa-users"></i>
+    </div>
+
+    <div class="main-container">
+        <!-- تبويبات المؤتمرات -->
+        <div class="conference-tabs">
+            <button class="conference-tab tab-upcoming active" onclick="switchConference('upcoming')">
+                <i class="fas fa-calendar-alt"></i> المؤتمر القادم
+            </button>
+            <button class="conference-tab tab-past" onclick="switchConference('past')">
+                <i class="fas fa-history"></i> المؤتمرات السابقة
+            </button>
+            <button class="conference-tab tab-special" onclick="switchConference('special')">
+                <i class="fas fa-star"></i> مؤتمرات خاصة
+            </button>
+        </div>
+
+        <!-- محتوى المؤتمر (سيتم تحديثه ديناميكياً) -->
+        <div id="conferenceContent">
+            <!-- سيتم تعبئتها عبر JavaScript -->
+        </div>
+
+        <div class="footer">
+            <p>© كلية النهضة الجديدة – المؤتمرات العلمية والفعاليات الأكاديمية</p>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // 1. بيانات المؤتمرات (قابلة للتعديل)
+        // ============================================================
+        const conferences = {
+            // المؤتمر القادم
+            upcoming: {
+                title: "المؤتمر الدولي الثاني للعلوم الطبية والتطبيقات الصحية",
+                date: "15 - 17 نوفمبر 2025",
+                location: "قاعة المؤتمرات الكبرى - كلية النهضة الجديدة",
+                badge: "المؤتمر القادم",
+                // معلومات أساسية
+                basicInfo: {
+                    objectives: [
+                        "تعزيز التعاون العلمي بين الباحثين في المجالات الطبية",
+                        "عرض أحدث التطورات في التشخيص والعلاج",
+                        "تبادل الخبرات بين الأكاديميين والممارسين الصحيين",
+                        "مناقشة التحديات المعاصرة في الرعاية الصحية"
+                    ],
+                    topics: [
+                        "المستجدات في العلوم الصيدلانية",
+                        "تكنولوجيا المختبرات الطبية",
+                        "الابتكار في التمريض والرعاية الحرجة",
+                        "الإدارة الصحية وجودة الرعاية",
+                        "الذكاء الاصطناعي في التشخيص الطبي"
+                    ]
+                },
+                // اللجان
+                committees: {
+                    scientific: [
+                        { name: "أ.د. أحمد علي", role: "رئيس اللجنة العلمية" },
+                        { name: "د. سارة محمد", role: "نائب الرئيس" },
+                        { name: "د. خالد عمر", role: "عضو" },
+                        { name: "د. فاطمة أحمد", role: "عضو" },
+                        { name: "د. منى يوسف", role: "عضو" },
+                        { name: "د. هاني سعيد", role: "عضو" }
+                    ],
+                    organizing: [
+                        { name: "د. محمد نور", role: "رئيس اللجنة التنظيمية" },
+                        { name: "أ. نادية حسن", role: "منسق عام" },
+                        { name: "م. أحمد محمود", role: "اللوجستيات" },
+                        { name: "أ. سلمى عمر", role: "العلاقات العامة" },
+                        { name: "أ. عبدالله سالم", role: "التسجيل" }
+                    ]
+                },
+                // التواريخ المهمة
+                importantDates: [
+                    { date: "1 مارس 2025", title: "بداية استقبال الملخصات", desc: "فتح باب التقديم للمشاركة" },
+                    { date: "30 يونيو 2025", title: "آخر موعد لتقديم الملخصات", desc: "لن يتم قبول أي ملخص بعد هذا التاريخ" },
+                    { date: "15 يوليو 2025", title: "الإشعار بقبول الملخصات", desc: "نتائج التحكيم" },
+                    { date: "1 سبتمبر 2025", title: "آخر موعد لتقديم البحوث كاملة", desc: "تسليم الأوراق النهائية" },
+                    { date: "15 أكتوبر 2025", title: "آخر موعد للتسجيل المبكر", desc: "رسوم مخفضة" }
+                ],
+                // قواعد النشر
+                publicationRules: [
+                    "يجب أن يكون البحث أصيلاً ولم يسبق نشره",
+                    "الالتزام بنموذج البحث المعتمد من المؤتمر",
+                    "تحكيم الأبحاث من قبل متخصصين في المجال",
+                    "عدد الصفحات لا يقل عن 8 صفحات ولا يزيد عن 15 صفحة",
+                    "الالتزام بقواعد اللغة العربية أو الإنجليزية السليمة",
+                    "توثيق المراجع وفق نظام APA"
+                ],
+                // الفعاليات
+                events: [
+                    { time: "09:00 - 10:30", event: "الجلسة الافتتاحية", location: "القاعة الرئيسية", speaker: "مدير الجامعة" },
+                    { time: "11:00 - 13:00", event: "ورشة عمل: تطبيقات الذكاء الاصطناعي", location: "قاعة (أ)", speaker: "د. أحمد علي" },
+                    { time: "11:00 - 13:00", event: "ورشة عمل: تقنيات المختبرات المتقدمة", location: "قاعة (ب)", speaker: "د. سارة محمد" },
+                    { time: "14:00 - 16:00", event: "جلسات علمية متزامنة", location: "قاعات متعددة", speaker: "باحثون" },
+                    { time: "16:30 - 18:00", event: "محاضرة عامة: مستقبل الرعاية الصحية", location: "القاعة الرئيسية", speaker: "أ.د. خالد عمر" }
+                ],
+                // المطبوعات
+                publications: [
+                    { title: "تأثير المستخلصات النباتية على الخلايا السرطانية", authors: "أحمد علي، سارة محمد", link: "#" },
+                    { title: "تطبيق الذكاء الاصطناعي في تشخيص الأمراض", authors: "خالد عمر، منى يوسف", link: "#" },
+                    { title: "تقييم جودة الرعاية التمريضية", authors: "فاطمة أحمد، محمد نور", link: "#" },
+                    { title: "دور الإدارة الصحية في تحسين الأداء", authors: "هاني سعيد، نادية حسن", link: "#" }
+                ],
+                // نماذج التسجيل
+                registrationForms: {
+                    participant: "#",
+                    attendee: "#",
+                    workshop: "#"
+                }
+            },
+            // المؤتمرات السابقة (يمكن إضافة المزيد)
+            past: {
+                title: "المؤتمر الدولي الأول للعلوم الطبية",
+                date: "10 - 12 ديسمبر 2024",
+                location: "كلية النهضة الجديدة",
+                badge: "المؤتمر السابق",
+                basicInfo: {
+                    objectives: [
+                        "نفس الأهداف مع تغيير طفيف",
+                        "يمكنك تعديل المحتوى حسب الرغبة"
+                    ],
+                    topics: ["موضوع 1", "موضوع 2"]
+                },
+                committees: {
+                    scientific: [{ name: "أ.د. سامي عبدالله", role: "رئيس اللجنة العلمية" }],
+                    organizing: [{ name: "د. ليلى أحمد", role: "رئيس اللجنة التنظيمية" }]
+                },
+                importantDates: [],
+                publicationRules: [],
+                events: [],
+                publications: [],
+                registrationForms: {}
+            },
+            // مؤتمرات خاصة
+            special: {
+                title: "ندوة التميز في التعليم الطبي",
+                date: "5 فبراير 2026",
+                location: "عن بعد - عبر Zoom",
+                badge: "ندوة خاصة",
+                basicInfo: {
+                    objectives: ["تطوير مهارات التعليم الطبي"],
+                    topics: ["استراتيجيات التدريس الحديثة"]
+                },
+                committees: {
+                    scientific: [{ name: "د. أحمد علي", role: "رئيس" }],
+                    organizing: [{ name: "أ. سارة محمد", role: "منسق" }]
+                },
+                importantDates: [],
+                publicationRules: [],
+                events: [],
+                publications: [],
+                registrationForms: {}
+            }
+        };
+
+        // ============================================================
+        // 2. دالة التبديل بين المؤتمرات
+        // ============================================================
+        window.switchConference = function(type) {
+            // تحديث التبويبات
+            document.querySelectorAll('.conference-tab').forEach(tab => tab.classList.remove('active'));
+            if (type === 'upcoming') document.querySelector('.tab-upcoming').classList.add('active');
+            else if (type === 'past') document.querySelector('.tab-past').classList.add('active');
+            else if (type === 'special') document.querySelector('.tab-special').classList.add('active');
+            
+            // عرض محتوى المؤتمر
+            displayConference(type);
+        };
+
+        // ============================================================
+        // 3. دالة عرض محتوى المؤتمر
+        // ============================================================
+        function displayConference(type) {
+            const conf = conferences[type];
+            const container = document.getElementById('conferenceContent');
+
+            container.innerHTML = `
+                <!-- بطاقة المؤتمر الرئيسية -->
+                <div class="conference-card">
+                    <div class="conference-header">
+                        <div class="conference-logo">
+                            <i class="fas ${type === 'upcoming' ? 'fa-calendar-alt' : type === 'past' ? 'fa-history' : 'fa-star'}"></i>
+                        </div>
+                        <div class="conference-title">
+                            <h2>${conf.title}</h2>
+                            <div class="date"><i class="fas fa-calendar"></i> ${conf.date}</div>
+                            <div class="location"><i class="fas fa-map-marker-alt"></i> ${conf.location}</div>
+                        </div>
+                        <div class="conference-badge">${conf.badge}</div>
+                    </div>
+
+                    <!-- شبكة المحتوى -->
+                    <div class="content-grid">
+                        <!-- معلومات أساسية -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+                                <h3>أهداف المؤتمر</h3>
+                            </div>
+                            <div class="card-content">
+                                <ul>
+                                    ${conf.basicInfo.objectives.map(obj => `
+                                        <li><i class="fas fa-check-circle"></i> ${obj}</li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon"><i class="fas fa-tags"></i></div>
+                                <h3>محاور المؤتمر</h3>
+                            </div>
+                            <div class="card-content">
+                                <ul>
+                                    ${conf.basicInfo.topics.map(topic => `
+                                        <li><i class="fas fa-tag"></i> ${topic}</li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- اللجان -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon"><i class="fas fa-users"></i></div>
+                                <h3>اللجنة العلمية</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="committee-grid">
+                                    ${conf.committees.scientific.map(member => `
+                                        <div class="committee-item">
+                                            <i class="fas fa-user-tie"></i>
+                                            <div class="committee-name">${member.name}</div>
+                                            <div class="committee-role">${member.role}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon"><i class="fas fa-tasks"></i></div>
+                                <h3>اللجنة التنظيمية</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="committee-grid">
+                                    ${conf.committees.organizing.map(member => `
+                                        <div class="committee-item">
+                                            <i class="fas fa-user-cog"></i>
+                                            <div class="committee-name">${member.name}</div>
+                                            <div class="committee-role">${member.role}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- التواريخ المهمة -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon"><i class="fas fa-clock"></i></div>
+                                <h3>التواريخ المهمة</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="timeline">
+                                    ${conf.importantDates.map(item => `
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">${item.date}</div>
+                                            <div class="timeline-title">${item.title}</div>
+                                            <div class="timeline-desc">${item.desc}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- قواعد النشر -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                                <h3>قواعد النشر</h3>
+                            </div>
+                            <div class="card-content">
+                                <ul>
+                                    ${conf.publicationRules.map(rule => `
+                                        <li><i class="fas fa-circle"></i> ${rule}</li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- الفعاليات -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon"><i class="fas fa-calendar-week"></i></div>
+                                <h3>جدول الفعاليات</h3>
+                            </div>
+                            <div class="card-content">
+                                <table class="schedule-table">
+                                    ${conf.events.map(event => `
+                                        <tr>
+                                            <td class="schedule-time">${event.time}</td>
+                                            <td>
+                                                <div class="schedule-event">${event.event}</div>
+                                                <div class="schedule-speaker"><i class="fas fa-user"></i> ${event.speaker}</div>
+                                                <div class="schedule-location"><i class="fas fa-map-pin"></i> ${event.location}</div>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- المطبوعات -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon"><i class="fas fa-download"></i></div>
+                                <h3>المطبوعات والأبحاث</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="publications-grid">
+                                    ${conf.publications.map(pub => `
+                                        <div class="publication-item">
+                                            <div class="publication-title">${pub.title}</div>
+                                            <div class="publication-authors">${pub.authors}</div>
+                                            <a href="${pub.link}" class="publication-link">
+                                                <i class="fas fa-file-pdf"></i> تحميل البحث
+                                            </a>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- نماذج التسجيل -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon"><i class="fas fa-edit"></i></div>
+                                <h3>نماذج التسجيل</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="download-links">
+                                    <a href="${conf.registrationForms.participant || '#'}" class="download-link register-link">
+                                        <i class="fas fa-user-plus"></i> تسجيل باحث
+                                    </a>
+                                    <a href="${conf.registrationForms.attendee || '#'}" class="download-link register-link">
+                                        <i class="fas fa-users"></i> تسجيل حضور
+                                    </a>
+                                    <a href="${conf.registrationForms.workshop || '#'}" class="download-link register-link">
+                                        <i class="fas fa-chalkboard-teacher"></i> ورش العمل
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ============================================================
+        // 4. التحميل الأولي
+        // ============================================================
+        window.onload = function() {
+            displayConference('upcoming');
+        };
+    </script>
+
+<script>
+
+/* القائمة الجانبية */
+
+function toggleMenu(){
+
+let menu=document.getElementById("sidebar");
+
+menu.style.width = menu.style.width==="250px" ? "0":"250px";
+
+}
+</script>
+
+</body>
+</html>

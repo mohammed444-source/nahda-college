@@ -25,6 +25,47 @@
             align-items: center;
         }
 
+/* القائمة الجانبية */
+
+.menu-btn{
+position:fixed;
+right:15px;
+top:15px;
+background:#1976d2;
+color:white;
+border:none;
+padding:10px;
+font-size:20px;
+border-radius:6px;
+z-index:1000;
+cursor:pointer;
+}
+
+.sidebar{
+height:100%;
+width:0;
+position:fixed;
+right:0;
+top:0;
+background:#0d47a1;
+overflow-x:hidden;
+transition:0.4s;
+padding-top:60px;
+z-index:999;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:15px 25px;
+text-decoration:none;
+font-size:16px;
+}
+
+.sidebar a:hover{
+background:#1565c0;
+}
+
         /* الخلفية الزرقاء للشعار */
         .logo-header {
             background: #0a3a5c;
@@ -364,6 +405,18 @@
         <img src="https://i.servimg.com/u/f52/20/64/69/74/11110010.png" alt="كلية النهضة الجديدة" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22100%22%20viewBox%3D%220%200%20300%20100%22%3E%3Crect%20width%3D%22300%22%20height%3D%22100%22%20fill%3D%22%230a3a5c%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2265%22%20font-family%3D%22Arial%22%20font-size%3D%2236%22%20fill%3D%22%23ffffff%22%20font-weight%3D%22bold%22%3E%D9%83%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%86%D9%87%D8%B6%D8%A9%3C%2Ftext%3E%3C%2Fsvg%3E';">
     </div>
 
+    <div class="medical-bg"></div>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<nav id="sidebar" class="sidebar">
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/index.html">الرئيسية</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/about.html"> حول الكلية</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/departments.html">الأقسام</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/lectures.html">المحاضرات</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/schedule.html">الجداول</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/results.html">النتائج</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/forms.html">النماذج الإدارية</a>
+</nav>
+
     <!-- النص التعريفي تحت الشعار -->
     <div class="intro-text">
         <i class="fas fa-file-alt"></i>
@@ -388,84 +441,30 @@
                         طلب التحاق للدراسة بالكلية
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('التحاق', event)">
+                       <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/tAm76jW/tlb-alalthak-pdf.pdf?e=1773812648&s=eae9ecbc29d2c6df6cf9e46b8c2a6e01'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <i class="fas fa-file-pdf file-icon"></i>
-                        بطاقة تنزيل مقررات دراسية
-                    </td>
-                    <td>
-                        <button class="download-link" onclick="downloadForm('تنزيل_مقررات', event)">
-                            <i class="fas fa-download"></i> تحميل
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <i class="fas fa-file-pdf file-icon"></i>
-                        نموذج حذف وإضافة مقررات دراسية
-                    </td>
-                    <td>
-                        <button class="download-link" onclick="downloadForm('حذف_وإضافة', event)">
-                            <i class="fas fa-download"></i> تحميل
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <i class="fas fa-file-pdf file-icon"></i>
-                        نموذج انسحاب من مقررات دراسية
-                    </td>
-                    <td>
-                        <button class="download-link" onclick="downloadForm('انسحاب', event)">
-                            <i class="fas fa-download"></i> تحميل
-                        </button>
-                    </td>
-                </tr>
-                <tr>
+             <tr>
                     <td>
                         <i class="fas fa-file-pdf file-icon"></i>
                         نموذج إقرار وتعهد
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('اقرار_وتعهد', event)">
+                       <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/vHWRnNd/akrar-otaahd-pdf.pdf?e=1773812807&s=6eace40d45077d68643999a8b5590c58'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <i class="fas fa-file-pdf file-icon"></i>
-                        بطاقة تنزيل مقررات طالب جديد
-                    </td>
-                    <td>
-                        <button class="download-link" onclick="downloadForm('تنزيل_طالب_جديد', event)">
-                            <i class="fas fa-download"></i> تحميل
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <i class="fas fa-file-pdf file-icon"></i>
-                        نموذج تجديد قيد
-                    </td>
-                    <td>
-                        <button class="download-link" onclick="downloadForm('تجديد_قيد', event)">
-                            <i class="fas fa-download"></i> تحميل
-                        </button>
-                    </td>
-                </tr>
+        
                 <tr>
                     <td>
                         <i class="fas fa-file-pdf file-icon"></i>
                         نموذج التحويل أو تغيير تخصص (Transfer Form)
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('تحويل_تخصص', event)">
+                <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/Ks5lX7g/tlb-nkl-pdf.pdf?e=1773812831&s=f13835907c9f801ecae214cf5ba0e12b'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
@@ -476,7 +475,7 @@
                         نموذج إخلاء الطرف
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('اخلاء_طرف', event)">
+                    <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/O37rJ1s/akhlaaa-trf-pdf.pdf?e=1773812903&s=35b96e5433c18ca69404e1a5ff543a47'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
@@ -487,7 +486,7 @@
                         سحب ملف شخصي
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('سحب_ملف', event)">
+                    <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/JyjQCk4/shb-mlf-shkhsy-pdf.pdf?e=1773812879&s=95fc55ab9591668191be6c59b5122dff'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
@@ -495,10 +494,10 @@
                 <tr>
                     <td>
                         <i class="fas fa-file-pdf file-icon"></i>
-                        نماذج طلب التدريب (Internship Application)
+                        نموذج شكوى / تظلم
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('طلب_تدريب', event)">
+                 <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/Hd7fP5m/nmothg-shko-ao-tthlm-pdf.pdf?e=1773810196&s=0009bf97261e9d8bb35d2da682c29433'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
@@ -509,7 +508,7 @@
                         نموذج إثبات مستوى
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('اثبات_مستوى', event)">
+                       <button class="download-link" onclick="window.location.href='https://certificat1.netlify.app/'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
@@ -520,7 +519,7 @@
                         نموذج إصدار البطاقة الجامعية (ID Card)
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('اصدار_بطاقة', event)">
+                    <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/oPDPkbz/tlb-astkhrag-btak-pdf.pdf?e=1773810525&s=12a76a825bf16c79404ffd6d918194c6'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
@@ -531,7 +530,7 @@
                         طلب إجراء امتحان غير مكمّل
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('امتحان_غير_مكمل', event)">
+                      <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/OJKHQVu/tlb-agraaa-amthan-ghyr-mkml-pdf.pdf?e=1773812271&s=089e6708b4589bcb90a650c443c991b9'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
@@ -542,7 +541,7 @@
                         نموذج طلب إيقاف قيد
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('ايقاف_قيد', event)">
+                    <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/L6rjppb/aykaf-kyd-pdf.pdf?e=1773812954&s=b5136c4f1b75dd246a40fb01afb3d57f'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
@@ -553,7 +552,7 @@
                         نموذج طلب كشف الدرجات
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('كشف_درجات', event)">
+                   <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/JrNEFIx/tlb-kshf-drgat-pdf.pdf?e=1773812987&s=482e85d38a813c1881b662dffa6fa9c7'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
@@ -564,29 +563,18 @@
                         نموذج طلب تسجيل بحث تخرج
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('تسجيل_بحث_تخرج', event)">
+                      <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/9WET5k5/tsgyl-bhth-aalmy-pdf.pdf?e=1773813075&s=e9fb02820346f3c55ef03c8aa160c20b'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <i class="fas fa-file-pdf file-icon"></i>
-                        نموذج تقرير الانتهاء من إعداد الرسالة أو الأطروحة
-                    </td>
-                    <td>
-                        <button class="download-link" onclick="downloadForm('انتهاء_رسالة', event)">
-                            <i class="fas fa-download"></i> تحميل
-                        </button>
-                    </td>
-                </tr>
-                <tr>
+            
                     <td>
                         <i class="fas fa-file-pdf file-icon"></i>
                         نموذج تسليم واستلام بحوث التخرج المطبوعة
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('تسليم_بحوث', event)">
+                       <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/VIEoDf7/nmozg-tslym-oastlam-bhth-nkhrg-pdf.pdf?e=1773813055&s=1ca6885549ea31db09261761950304fa'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
@@ -597,7 +585,7 @@
                         نموذج طلب إفادة تخرج
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('افادة_تخرج', event)">
+                       <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/lx2NykU/tlb-afad-tkhrg-pdf.pdf?e=1773813110&s=fa50c96f182fd0a2c07219b750ce7331'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
@@ -608,23 +596,23 @@
                         نموذج راحة طبية
                     </td>
                     <td>
-                        <button class="download-link" onclick="downloadForm('راحة_طبية', event)">
+                        <button class="download-link" onclick="window.location.href='https://www.docdroid.com/file/download/koFwd9U/rah-tby-pdf.pdf?e=1773813145&s=eb6694535add691c16b1f0ec9ac3bd91'">
                             <i class="fas fa-download"></i> تحميل
                         </button>
                     </td>
                 </tr>
-                <!-- نموذج سجل التدريب الميداني أصبح الأخير -->
+         <!-- نموذج سجل التدريب الميداني (القائمة الأولى) -->
                 <tr>
                     <td>
                         <i class="fas fa-file-pdf file-icon"></i>
                         <span style="color: #b68b40; font-weight: bold;">◈</span> 
-                        نموذج سجل التدريب الميداني (Logbook) حسب التخصص
+                        نموذج طلب تدريب عملي حسب التخصص 
                     </td>
                     <td style="position: relative;">
-                        <button class="download-link" onclick="toggleSpecialtyMenu(event)">
+                        <button class="download-link" onclick="toggleSpecialtyMenu(event, 'logbookMenu')">
                             <i class="fas fa-list"></i> اختر التخصص
                         </button>
-                        <!-- قائمة التخصصات المنبثقة - تظهر فوق الزر -->
+                        <!-- قائمة التخصصات المنبثقة - القائمة الأولى -->
                         <div class="specialty-menu" id="logbookMenu">
                             <div class="specialty-item" onclick="downloadLogbook('pharmacy', event)">
                                 <i class="fas fa-pills"></i>
@@ -645,25 +633,42 @@
                         </div>
                     </td>
                 </tr>
-            </table>
 
+<!-- نموذج تنزيل دفاتر التدريب العملي (log book) - القائمة الثانية -->
+<tr>
+    <td>
+        <i class="fas fa-file-pdf file-icon"></i>
+        <span style="color: #b68b40; font-weight: bold;">◈</span> 
+        نموذج تنزيل دفتر التدريب العملي (Log Book)
+    </td>
+    <td style="position: relative;">
+        <button class="download-link" onclick="toggleSpecialtyMenu(event, 'trainingLogbookMenu')">
+            <i class="fas fa-list"></i> اختر التخصص
+        </button>
+        <!-- قائمة دفاتر التدريب المنبثقة - القائمة الثانية -->
+        <div class="specialty-menu" id="trainingLogbookMenu">
+            <div class="specialty-item" onclick="downloadTrainingLogbook('pharmacy', 'trainingLogbookMenu', event)">
+                <i class="fas fa-pills"></i>
+                دفتر الصيدلة
+            </div>
+            <div class="specialty-item" onclick="downloadTrainingLogbook('medlab', 'trainingLogbookMenu', event)">
+                <i class="fas fa-microscope"></i>
+                دفتر المختبرات
+            </div>
+            <div class="specialty-item" onclick="downloadTrainingLogbook('nursing', 'trainingLogbookMenu', event)">
+                <i class="fas fa-user-nurse"></i>
+                دفتر التمريض
+            </div>
+        </div>
+    </td>
+</tr>
+
+            </table>
             <!-- ملاحظات إضافية -->
             <div class="notes-section">
                 <p>
                     <i class="fas fa-info-circle"></i>
                     جميع النماذج بصيغة PDF قابلة للطباعة والتعبئة
-                </p>
-                <p style="margin-top: 0.5rem;">
-                    <i class="fas fa-clock"></i>
-                    آخر تحديث: الفصل الدراسي الثاني 2025
-                </p>
-                <p style="margin-top: 0.5rem;">
-                    <i class="fas fa-check-circle"></i>
-                    إجمالي النماذج المتاحة: 22 نموذج إداري
-                </p>
-                <p style="margin-top: 0.5rem; color: #b68b40;">
-                    <i class="fas fa-star"></i>
-                    نموذج سجل التدريب متوفر بأربعة تخصصات منفصلة (آخر نموذج)
                 </p>
             </div>
         </div>
@@ -673,91 +678,114 @@
         </div>
     </div>
 
-    <script>
-        // دالة إظهار/إخفاء قائمة التخصصات
-        function toggleSpecialtyMenu(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            const menu = document.getElementById('logbookMenu');
-            menu.classList.toggle('show');
-            
-            // إغلاق القائمة عند النقر في أي مكان آخر
-            if (menu.classList.contains('show')) {
-                setTimeout(() => {
-                    document.addEventListener('click', function closeMenu(e) {
-                        if (!menu.contains(e.target) && !e.target.classList.contains('download-link')) {
-                            menu.classList.remove('show');
-                            document.removeEventListener('click', closeMenu);
-                        }
-                    });
-                }, 100);
+<script>
+    // دالة إظهار/إخفاء قائمة التخصصات - معدلة للعمل مع أي قائمة
+    function toggleSpecialtyMenu(event, menuId) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        // إذا لم يتم تمرير menuId، استخدم القيمة الافتراضية 'logbookMenu'
+        const targetMenuId = menuId || 'logbookMenu';
+        const menu = document.getElementById(targetMenuId);
+        
+        // إخفاء جميع القوائم الأخرى أولاً
+        document.querySelectorAll('.specialty-menu').forEach(m => {
+            if (m.id !== targetMenuId) {
+                m.classList.remove('show');
             }
+        });
+        
+        // إظهار/إخفاء القائمة المطلوبة
+        menu.classList.toggle('show');
+        
+        // إغلاق القائمة عند النقر في أي مكان آخر
+        if (menu.classList.contains('show')) {
+            setTimeout(() => {
+                document.addEventListener('click', function closeMenu(e) {
+                    if (!menu.contains(e.target) && !e.target.classList.contains('download-link')) {
+                        menu.classList.remove('show');
+                        document.removeEventListener('click', closeMenu);
+                    }
+                });
+            }, 100);
         }
+    }
 
-        // دالة تحميل سجل التدريب حسب التخصص
-        function downloadLogbook(specialty, event) {
+    // دالة تحميل سجل التدريب حسب التخصص (للقائمة الأولى)
+    function downloadLogbook(specialty, event) {
+        // منع الحدث من الانتقال للعناصر الأخرى
+        if (event) {
             event.preventDefault();
             event.stopPropagation();
-            
-            const specialtyNames = {
-                'pharmacy': 'الصيدلة',
-                'medlab': 'المختبرات الطبية',
-                'nursing': 'التمريض',
-                'hadm': 'الإدارة الصحية'
-            };
-            
-            const messages = {
-                'pharmacy': 'سيتم تحميل سجل التدريب الميداني لقسم الصيدلة قريباً',
-                'medlab': 'سيتم تحميل سجل التدريب الميداني لقسم المختبرات الطبية قريباً',
-                'nursing': 'سيتم تحميل سجل التدريب الميداني لقسم التمريض قريباً',
-                'hadm': 'سيتم تحميل سجل التدريب الميداني لقسم الإدارة الصحية قريباً'
-            };
-            
-            alert(messages[specialty]);
-            
-            // إخفاء القائمة بعد الاختيار
-            document.getElementById('logbookMenu').classList.remove('show');
-            
-            // هنا يمكنك وضع روابط التحميل الحقيقية حسب التخصص
-            // switch(specialty) {
-            //     case 'pharmacy': window.location.href = 'رابط_سجل_الصيدلة.pdf'; break;
-            //     case 'medlab': window.location.href = 'رابط_سجل_المختبرات.pdf'; break;
-            //     case 'nursing': window.location.href = 'رابط_سجل_التمريض.pdf'; break;
-            //     case 'hadm': window.location.href = 'رابط_سجل_الادارة.pdf'; break;
-            // }
+        }
+        
+        // تعريف الروابط المباشرة لكل تخصص - القائمة الأولى
+        let fileUrl = '';
+        
+        switch(specialty) {
+            case 'pharmacy':
+                fileUrl = 'https://www.docdroid.com/file/download/20Qna7Y/tlb-tdryb-sydl-pdf.pdf?e=1773813212&s=808387f7be922ca1996e59e9761a9676'; // رابط الصيدلة
+                break;
+            case 'medlab':
+                fileUrl = 'https://www.docdroid.com/file/download/whHEBOE/tlb-tdryb-mkhtbrat-pdf.pdf?e=1773813252&s=ec29ff6e2d9e81aab2fa6ce6b8f2243c'; // رابط المختبرات
+                break;
+            case 'nursing':
+                fileUrl = 'https://www.docdroid.com/file/download/Fje85ia/tlb-tdryb-ksm-altmryd-pdf.pdf?e=1773813276&s=1f10cdb7f429798ae10a60a5f837534c'; // رابط التمريض
+                break;
+            case 'hadm':
+                fileUrl = 'https://www.docdroid.com/file/download/Fje85ia/tlb-tdryb-ksm-altmryd-pdf.pdf?e=1773813309&s=8aa70a7e29ae30972c52bb919a61d219'; // رابط الإدارة الصحية
+                break;
+            default:
+                alert('عذراً، التخصص غير معروف');
+                return;
         }
 
-        // دالة محاكاة تحميل باقي النماذج
-        function downloadForm(formName, event) {
-            event.preventDefault();
-            
-            const messages = {
-                'التحاق': 'سيتم تحميل نموذج طلب الالتحاق قريباً',
-                'تنزيل_مقررات': 'سيتم تحميل بطاقة تنزيل المقررات قريباً',
-                'حذف_وإضافة': 'سيتم تحميل نموذج حذف وإضافة المقررات قريباً',
-                'انسحاب': 'سيتم تحميل نموذج الانسحاب من المقررات قريباً',
-                'اقرار_وتعهد': 'سيتم تحميل نموذج الإقرار والتعهد قريباً',
-                'تنزيل_طالب_جديد': 'سيتم تحميل بطاقة تنزيل مقررات طالب جديد قريباً',
-                'تجديد_قيد': 'سيتم تحميل نموذج تجديد القيد قريباً',
-                'تحويل_تخصص': 'سيتم تحميل نموذج التحويل أو تغيير التخصص قريباً',
-                'اخلاء_طرف': 'سيتم تحميل نموذج إخلاء الطرف قريباً',
-                'سحب_ملف': 'سيتم تجهيز نموذج سحب الملف الشخصي قريباً',
-                'طلب_تدريب': 'سيتم تحميل نماذج طلب التدريب قريباً',
-                'اثبات_مستوى': 'سيتم تحميل نموذج إثبات المستوى قريباً',
-                'اصدار_بطاقة': 'سيتم تحميل نموذج إصدار البطاقة الجامعية قريباً',
-                'امتحان_غير_مكمل': 'سيتم تحميل طلب إجراء امتحان غير مكمّل قريباً',
-                'ايقاف_قيد': 'سيتم تحميل نموذج طلب إيقاف قيد قريباً',
-                'كشف_درجات': 'سيتم تحميل نموذج طلب كشف الدرجات قريباً',
-                'تسجيل_بحث_تخرج': 'سيتم تحميل نموذج طلب تسجيل بحث تخرج قريباً',
-                'انتهاء_رسالة': 'سيتم تحميل نموذج تقرير الانتهاء من الرسالة قريباً',
-                'تسليم_بحوث': 'سيتم تحميل نموذج تسليم واستلام بحوث التخرج قريباً',
-                'افادة_تخرج': 'سيتم تحميل نموذج طلب إفادة تخرج قريباً',
-                'راحة_طبية': 'سيتم تحميل نموذج الراحة الطبية قريباً'
-            };
-            
-            alert(messages[formName] || 'جاري تجهيز النموذج للتحميل');
+        // التأكد من وجود الرابط
+        if (fileUrl) {
+            // فتح الرابط في نفس الصفحة لبدء التحميل
+            window.location.href = fileUrl;
+        } else {
+            alert('عذراً، رابط التحميل غير متوفر لهذا التخصص حالياً.');
         }
-    </script>
+        
+        // إخفاء القائمة بعد الاختيار
+        const menu = document.getElementById('logbookMenu');
+        if (menu) {
+            menu.classList.remove('show');
+        }
+    }
+
+    // دالة القائمة الجانبية
+    function toggleMenu() {
+        let menu = document.getElementById("sidebar");
+        menu.style.width = menu.style.width === "250px" ? "0" : "250px";
+    }
+
+// دالة تحميل دفاتر التدريب العملي - القائمة الثانية
+// ⚠️ IMPORTANT: استبدل الروابط أدناه بروابط الدفاتر الفعلية لكل تخصص
+function downloadTrainingLogbook(specialty, menuId, event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    
+    // روابط دفاتر التدريب - ⚠️ غير هذه الروابط بروابطك الفعلية
+    const urls = {
+        'pharmacy': 'https://www.docdroid.com/file/download/kwGjwex/phama-log-book-pdf.pdf?e=1773810350&s=8b4760ecb838ede653c31f0688d7ef70', // ⚠️ استبدل هذا الرابط
+        'medlab': 'https://www.docdroid.com/file/download/RS7lkA0/log-book-pdf.pdf?e=1773810414&s=3e94875bd6d2d9cb7f8e073ebaf5ed82', // ⚠️ استبدل هذا الرابط
+        'nursing': 'https://www.docdroid.com/file/download/TKGUTO5/logbook-bsc-ns-g-pdf.pdf?e=1773812379&s=9c8282e261d815303912a8464e96067a'    // ⚠️ استبدل هذا الرابط
+    };
+    
+    if (urls[specialty]) {
+        window.location.href = urls[specialty];
+    } else {
+        alert('الرابط غير متوفر لهذا التخصص');
+    }
+    
+    // إخفاء القائمة
+    document.getElementById(menuId).classList.remove('show');
+}
+</script>
+
 </body>
 </html>

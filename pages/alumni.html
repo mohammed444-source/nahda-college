@@ -1,1 +1,800 @@
-alumni.html
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>كلية النهضة الجديدة – خريجونا</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(165deg, #eef5fc 0%, #f8fbfe 80%);
+            min-height: 100vh;
+            color: #022b40;
+            padding: 0;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* الخلفية الزرقاء للشعار */
+        .logo-header {
+            background: #0a3a5c;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .logo-header img {
+            max-width: 100%;
+            height: auto;
+            max-height: 100px;
+            object-fit: contain;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 1rem 2rem 1rem;
+        }
+        
+/* القائمة الجانبية */
+
+.menu-btn{
+position:fixed;
+right:15px;
+top:15px;
+background:#1976d2;
+color:white;
+border:none;
+padding:10px;
+font-size:20px;
+border-radius:6px;
+z-index:1000;
+cursor:pointer;
+}
+
+.sidebar{
+height:100%;
+width:0;
+position:fixed;
+right:0;
+top:0;
+background:#0d47a1;
+overflow-x:hidden;
+transition:0.4s;
+padding-top:60px;
+z-index:999;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:15px 25px;
+text-decoration:none;
+font-size:16px;
+}
+
+.sidebar a:hover{
+background:#1565c0;
+}
+
+        /* النص التعريفي تحت الشعار */
+        .intro-text {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            font-weight: 700;
+            color: #05445E;
+            background: rgba(255,255,255,0.7);
+            padding: 1rem 1.5rem;
+            border-radius: 60px;
+            display: inline-block;
+            width: auto;
+            margin-right: auto;
+            margin-left: auto;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            border: 1px solid #b68b40;
+            backdrop-filter: blur(10px);
+        }
+
+        .intro-text span {
+            color: #b68b40;
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            display: inline-block;
+            margin: 0 0.3rem;
+        }
+
+        .intro-text i {
+            color: #b68b40;
+            margin: 0 0.5rem;
+        }
+
+        /* الأقسام الرئيسية - في صف واحد */
+        .sections-row {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 0.8rem;
+            padding: 0.5rem 0.2rem 1.5rem 0.2rem;
+            margin-bottom: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: #b68b40 #e0e9f2;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sections-row::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .sections-row::-webkit-scrollbar-track {
+            background: #e0e9f2;
+            border-radius: 10px;
+        }
+
+        .sections-row::-webkit-scrollbar-thumb {
+            background: #b68b40;
+            border-radius: 10px;
+        }
+
+        .section-card {
+            flex: 0 0 auto;
+            width: 160px;
+            background: white;
+            border-radius: 30px;
+            padding: 1rem 0.8rem;
+            box-shadow: 0 8px 18px rgba(0, 40, 60, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 60, 90, 0.15);
+            border-color: #b68b40;
+        }
+
+        .section-card.active {
+            border-color: #b68b40;
+            background: linear-gradient(145deg, #f9f3e8, #fff9f0);
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #b68b40, #dba959);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .section-card:hover::before,
+        .section-card.active::before {
+            transform: scaleX(1);
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background: rgba(182, 139, 64, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b68b40;
+            font-size: 1.3rem;
+            margin: 0 auto 0.5rem auto;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #05445E;
+            margin-bottom: 0.2rem;
+            line-height: 1.3;
+        }
+
+        /* منطقة عرض التفاصيل */
+        .details-panel {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem;
+            margin: 1rem 0 2rem 0;
+            box-shadow: 0 20px 40px -15px #05405b;
+            border: 1px solid rgba(255,255,255,0.7);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .details-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px dotted #b68b40;
+            padding-bottom: 1rem;
+        }
+
+        .panel-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background: rgba(182, 139, 64, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b68b40;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .panel-header h2 {
+            font-size: 1.5rem;
+            color: #05445E;
+        }
+
+        /* بطاقات المحتوى الداخلي */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .content-card {
+            background: #f8faff;
+            border-radius: 30px;
+            padding: 1.3rem;
+            border: 1px solid #e6eef9;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 60, 90, 0.1);
+            border-color: #b68b40;
+        }
+
+        .content-card h3 {
+            font-size: 1.1rem;
+            color: #05445E;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-card h3 i {
+            color: #b68b40;
+        }
+
+        .content-list {
+            list-style: none;
+        }
+
+        .content-list li {
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            padding: 0.3rem;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        .content-list li:hover {
+            background: rgba(182, 139, 64, 0.08);
+        }
+
+        .content-list li i {
+            color: #b68b40;
+            width: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* روابط التحميل */
+        .download-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: linear-gradient(145deg, #05445E, #1E6F9F);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 0.2rem;
+        }
+
+        .download-link:hover {
+            background: linear-gradient(145deg, #0a5a7a, #2a80b0);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 70, 100, 0.3);
+        }
+
+        /* بطاقات المشاريع */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 25px;
+            padding: 1.2rem;
+            border: 1px solid #e0e9f2;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: #b68b40;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 60, 90, 0.1);
+        }
+
+        .project-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #05445E;
+            margin-bottom: 0.4rem;
+        }
+
+        .project-student {
+            color: #b68b40;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .project-dept {
+            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            color: #444;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-link {
+            color: #b68b40;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* أخبار وفعاليات */
+        .news-item {
+            display: flex;
+            gap: 0.8rem;
+            padding: 0.8rem;
+            border-bottom: 1px dashed #e0e9f2;
+        }
+
+        .news-date {
+            background: #b68b40;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            height: fit-content;
+            white-space: nowrap;
+        }
+
+        .news-content h4 {
+            font-size: 0.95rem;
+            color: #05445E;
+            margin-bottom: 0.2rem;
+        }
+
+        .news-content p {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* استبيانات */
+        .survey-item {
+            background: white;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .survey-question {
+            font-weight: 600;
+            color: #05445E;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-stars {
+            color: #b68b40;
+            font-size: 1rem;
+            margin: 0.3rem 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #205b78;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 480px) {
+            .section-card {
+                width: 140px;
+                padding: 0.8rem 0.5rem;
+            }
+            
+            .section-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 0.9rem;
+            }
+            
+            .panel-header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر بالشعار -->
+    <div class="logo-header">
+        <img src="https://i.servimg.com/u/f52/20/64/69/74/11110010.png" alt="كلية النهضة الجديدة" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22100%22%20viewBox%3D%220%200%20300%20100%22%3E%3Crect%20width%3D%22300%22%20height%3D%22100%22%20fill%3D%22%230a3a5c%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2265%22%20font-family%3D%22Arial%22%20font-size%3D%2236%22%20fill%3D%22%23ffffff%22%20font-weight%3D%22bold%22%3E%D9%83%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%86%D9%87%D8%B6%D8%A9%3C%2Ftext%3E%3C%2Fsvg%3E';">
+    </div>
+    <div class="medical-bg"></div>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<nav id="sidebar" class="sidebar">
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/index.html">الرئيسية</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/about.html"> حول الكلية</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/departments.html">الأقسام</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/lectures.html">المحاضرات</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/schedule.html">الجداول</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/results.html">النتائج</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/forms.html">النماذج الإدارية</a>
+
+</nav>
+
+    <!-- النص التعريفي تحت الشعار -->
+    <div class="intro-text">
+        <i class="fas fa-user-graduate"></i>
+        <span>🎓</span> خريجونا <span>📚</span>
+        <i class="fas fa-project-diagram"></i>
+    </div>
+
+    <div class="main-container">
+        <!-- الأقسام الرئيسية (المشاريع والوثائق في المقدمة) -->
+        <div class="sections-row">
+            <!-- 1️⃣ المشاريع - أولاً -->
+            <div class="section-card" onclick="showSection('projects')">
+                <div class="section-icon"><i class="fas fa-project-diagram"></i></div>
+                <div class="section-title">المشاريع</div>
+            </div>
+
+            <!-- 2️⃣ الوثائق - ثانياً -->
+            <div class="section-card" onclick="showSection('documents')">
+                <div class="section-icon"><i class="fas fa-file-certificate"></i></div>
+                <div class="section-title">الوثائق</div>
+            </div>
+
+            <!-- 3️⃣ استبيانات -->
+            <div class="section-card" onclick="showSection('surveys')">
+                <div class="section-icon"><i class="fas fa-chart-pie"></i></div>
+                <div class="section-title">استبيانات</div>
+            </div>
+
+            <!-- 4️⃣ أخبار -->
+            <div class="section-card" onclick="showSection('news')">
+                <div class="section-icon"><i class="fas fa-newspaper"></i></div>
+                <div class="section-title">أخبار</div>
+            </div>
+        </div>
+
+        <!-- منطقة عرض التفاصيل (تظهر عند النقر) -->
+        <div id="detailsPanel" class="details-panel">
+            <!-- سيتم تعبئتها عبر JavaScript -->
+        </div>
+
+        <div class="footer">
+            <p>© كلية النهضة الجديدة – إنجازات خريجينا</p>
+        </div>
+    </div>
+
+    <script>
+        /* القائمة الجانبية */
+
+function toggleMenu(){
+
+let menu=document.getElementById("sidebar");
+
+menu.style.width = menu.style.width==="250px" ? "0":"250px";
+
+}
+
+        // ============================================================
+        // 1. بيانات الأقسام (المشاريع والوثائق فقط مع المحذوفات)
+        // ============================================================
+        const sectionsData = {
+            // 1️⃣ المشاريع (أولاً)
+            projects: {
+                icon: "fa-project-diagram",
+                title: "مشاريع التخرج",
+                content: `
+                    <div class="panel-header">
+                        <div class="panel-icon"><i class="fas fa-project-diagram"></i></div>
+                        <h2>مشاريع التخرج المتميزة</h2>
+                    </div>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-title">تأثير المستخلصات النباتية على الخلايا السرطانية</div>
+                            <div class="project-student">أحمد محمد - صيدلة</div>
+                            <div class="project-dept">إشراف: د. سارة أحمد | 2025</div>
+                            <div class="project-desc">دراسة تأثير 5 نباتات محلية على تثبيط نمو الخلايا السرطانية.</div>
+                            <a href="#" class="project-link"><i class="fas fa-file-pdf"></i> عرض المشروع</a>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-title">تطوير جهاز تشخيص سريع للأمراض</div>
+                            <div class="project-student">فاطمة عمر - مختبرات</div>
+                            <div class="project-dept">إشراف: د. خالد نور | 2025</div>
+                            <div class="project-desc">جهاز محمول لتشخيص الأمراض باستخدام تقنية النانو.</div>
+                            <a href="#" class="project-link"><i class="fas fa-file-pdf"></i> عرض المشروع</a>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-title">برنامج توعوي للوقاية من السكري</div>
+                            <div class="project-student">منى حسن - تمريض</div>
+                            <div class="project-dept">إشراف: د. فاطمة علي | 2024</div>
+                            <div class="project-desc">تصميم برنامج تثقيفي للمرضى وأسرهم.</div>
+                            <a href="#" class="project-link"><i class="fas fa-file-pdf"></i> عرض المشروع</a>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-title">نظام إلكتروني لإدارة المستشفيات</div>
+                            <div class="project-student">خالد سعيد - إدارة صحية</div>
+                            <div class="project-dept">إشراف: د. هاني إبراهيم | 2025</div>
+                            <div class="project-desc">تطبيق ويب لإدارة المواعيد والسجلات الطبية.</div>
+                            <a href="#" class="project-link"><i class="fas fa-file-pdf"></i> عرض المشروع</a>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-title">دراسة تفاعلات الأدوية مع الأعشاب</div>
+                            <div class="project-student">سارة عبدالله - صيدلة</div>
+                            <div class="project-dept">إشراف: د. أحمد علي | 2024</div>
+                            <div class="project-desc">تحليل 50 تفاعل دوائي مع الأعشاب الشائعة.</div>
+                            <a href="#" class="project-link"><i class="fas fa-file-pdf"></i> عرض المشروع</a>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-title">مقارنة طرق تشخيص البكتيريا</div>
+                            <div class="project-student">نور إبراهيم - مختبرات</div>
+                            <div class="project-dept">إشراف: د. منى يوسف | 2025</div>
+                            <div class="project-desc">دراسة مقارنة بين 3 تقنيات تشخيصية.</div>
+                            <a href="#" class="project-link"><i class="fas fa-file-pdf"></i> عرض المشروع</a>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#" class="download-link"><i class="fas fa-archive"></i> أرشيف كامل للمشاريع</a>
+                        <a href="#" class="download-link"><i class="fas fa-upload"></i> رفع مشروع جديد</a>
+                    </div>
+                `
+            },
+            // 2️⃣ الوثائق (ثانياً)
+            documents: {
+                icon: "fa-file-certificate",
+                title: "خدمات الوثائق الأكاديمية",
+                content: `
+                    <div class="panel-header">
+                        <div class="panel-icon"><i class="fas fa-file-certificate"></i></div>
+                        <h2>الوثائق الأكاديمية</h2>
+                    </div>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3><i class="fas fa-file-alt"></i> طلب وثائق</h3>
+                            <ul class="content-list">
+                                <li><i class="fas fa-file-pdf"></i> طلب كشف درجات (Transcript)</li>
+                                <li><i class="fas fa-file-pdf"></i> طلب شهادة تخرج</li>
+                                <li><i class="fas fa-file-pdf"></i> طلب بدل فاقد لشهادة التخرج</li>
+                                <li><i class="fas fa-file-pdf"></i> طلب وصف المواد الدراسية</li>
+                                <li><i class="fas fa-file-pdf"></i> طلب خطاب تزكية</li>
+                            </ul>
+                        </div>
+                        <div class="content-card">
+                            <h3><i class="fas fa-clock"></i> الإجراءات والرسوم</h3>
+                            <ul class="content-list">
+                                <li><i class="fas fa-check"></i> تعبئة النموذج الإلكتروني</li>
+                                <li><i class="fas fa-check"></i> دفع الرسوم (20 دينار للكشف)</li>
+                                <li><i class="fas fa-check"></i> مدة الإنجاز: 3-5 أيام عمل</li>
+                                <li><i class="fas fa-check"></i> الاستلام: يدوياً أو بشحن سريع</li>
+                            </ul>
+                        </div>
+                        <div class="content-card">
+                            <h3><i class="fas fa-download"></i> تحميل النماذج</h3>
+                            <a href="#" class="download-link"><i class="fas fa-file-word"></i> نموذج طلب كشف درجات</a>
+                            <a href="#" class="download-link"><i class="fas fa-file-word"></i> نموذج طلب شهادة تخرج</a>
+                            <a href="#" class="download-link"><i class="fas fa-file-word"></i> نموذج طلب بدل فاقد</a>
+                            <a href="#" class="download-link"><i class="fas fa-file-pdf"></i> دليل الإجراءات</a>
+                        </div>
+                    </div>
+                `
+            },
+            // 3️⃣ استبيانات
+            surveys: {
+                icon: "fa-chart-pie",
+                title: "استبيانات القياس",
+                content: `
+                    <div class="panel-header">
+                        <div class="panel-icon"><i class="fas fa-chart-pie"></i></div>
+                        <h2>استبيانات القياس</h2>
+                    </div>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3><i class="fas fa-poll"></i> نتائج الاستبيانات</h3>
+                            <div class="survey-item">
+                                <div class="survey-question">مدى استفادتك من البرنامج الدراسي في حياتك المهنية؟</div>
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <div style="color: #666; font-size: 0.85rem;">متوسط التقييم: 4.2 من 5</div>
+                            </div>
+                            <div class="survey-item">
+                                <div class="survey-question">مدى ملاءمة المهارات المكتسبة مع سوق العمل؟</div>
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                </div>
+                                <div style="color: #666;">متوسط التقييم: 3.8 من 5</div>
+                            </div>
+                            <div class="survey-item">
+                                <div class="survey-question">جودة التدريب العملي أثناء الدراسة؟</div>
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                                </div>
+                                <div style="color: #666;">متوسط التقييم: 3.5 من 5</div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <h3><i class="fas fa-pen"></i> استبيانات نشطة</h3>
+                            <ul class="content-list">
+                                <li><i class="fas fa-circle"></i> استبيان الخريجين 2025 (مفتوح حتى 30/4)</li>
+                                <li><i class="fas fa-circle"></i> استبيان متابعة الخريجين - الدفعة 2024</li>
+                                <li><i class="fas fa-circle"></i> استبيان احتياجات سوق العمل</li>
+                            </ul>
+                            <a href="#" class="download-link"><i class="fas fa-poll"></i> شارك في الاستبيان</a>
+                        </div>
+                        <div class="content-card">
+                            <h3><i class="fas fa-chart-bar"></i> نتائج سابقة</h3>
+                            <a href="#" class="download-link"><i class="fas fa-file-pdf"></i> تقرير استبيان 2024</a>
+                            <a href="#" class="download-link"><i class="fas fa-file-pdf"></i> تحليل نتائج الخريجين</a>
+                            <a href="#" class="download-link"><i class="fas fa-file-pdf"></i> توصيات تطوير البرامج</a>
+                        </div>
+                    </div>
+                `
+            },
+            // 4️⃣ أخبار وفعاليات
+            news: {
+                icon: "fa-newspaper",
+                title: "أخبار وفعاليات",
+                content: `
+                    <div class="panel-header">
+                        <div class="panel-icon"><i class="fas fa-newspaper"></i></div>
+                        <h2>أخبار وفعاليات</h2>
+                    </div>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3><i class="fas fa-calendar-alt"></i> الفعاليات القادمة</h3>
+                            <div class="news-item">
+                                <span class="news-date">15 مايو</span>
+                                <div class="news-content">
+                                    <h4>لقاء الخريجين السنوي</h4>
+                                    <p>قاعة المؤتمرات - 6 مساءً</p>
+                                </div>
+                            </div>
+                            <div class="news-item">
+                                <span class="news-date">22 مايو</span>
+                                <div class="news-content">
+                                    <h4>ندوة فرص العمل في القطاع الصحي</h4>
+                                    <p>عن بعد - عبر Zoom</p>
+                                </div>
+                            </div>
+                            <div class="news-item">
+                                <span class="news-date">5 يونيو</span>
+                                <div class="news-content">
+                                    <h4>حفل تخرج الدفعة 2025</h4>
+                                    <p>المسرح الكبير - 5 مساءً</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <h3><i class="fas fa-star"></i> قصص نجاح</h3>
+                            <div class="news-item">
+                                <div class="news-content">
+                                    <h4>د. أحمد علي - باحث متميز</h4>
+                                    <p>حصل على جائزة أفضل بحث طبي في المؤتمر الدولي</p>
+                                </div>
+                            </div>
+                            <div class="news-item">
+                                <div class="news-content">
+                                    <h4>صيدلية د. سارة</h4>
+                                    <p>افتتاح أول صيدلية متخصصة في الرعاية الصيدلانية</p>
+                                </div>
+                            </div>
+                            <div class="news-item">
+                                <div class="news-content">
+                                    <h4>فريق تمريض الطوارئ</h4>
+                                    <p>تكريم فريق التمريض في مستشفى السلام</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-card">
+                            <h3><i class="fas fa-images"></i> ألبوم الصور</h3>
+                            <a href="#" class="download-link"><i class="fas fa-images"></i> صور حفل التخرج 2024</a>
+                            <a href="#" class="download-link"><i class="fas fa-images"></i> لقاء الخريجين السابق</a>
+                            <a href="#" class="download-link"><i class="fas fa-video"></i> فيديو تسجيلي</a>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // ============================================================
+        // 2. دالة عرض القسم المحدد
+        // ============================================================
+        function showSection(sectionId) {
+            // تحديث حالة الأزرار
+            document.querySelectorAll('.section-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+
+            // عرض التفاصيل
+            const panel = document.getElementById('detailsPanel');
+            panel.innerHTML = sectionsData[sectionId].content;
+            panel.classList.add('active');
+        }
+    </script>
+</body>
+</html>
