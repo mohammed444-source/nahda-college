@@ -1,363 +1,877 @@
 ﻿<!DOCTYPE html>
 <html lang="ar">
 <head>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a3d62">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a3d62">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كلية النهضة الجديدة – تسجيل الدخول</title>
+    
+    <!-- الخطوط والمكتبات -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-<title>كلية النهضة الجديدة</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #f4f7fc;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+            direction: rtl;
+        }
 
-<style>
+        /* ===== القائمة الجانبية ===== */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            background: linear-gradient(180deg, #0d47a1 0%, #1565c0 100%);
+            overflow-x: hidden;
+            transition: 0.4s;
+            padding-top: 0;
+            z-index: 999;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        }
 
-body{
-.card p{
-font-family:'Cairo', sans-serif;
-font-weight:700;
-font-size:18px;
-}
-}
-body{
-margin:0;
-font-family:Cairo;
-direction:rtl;
-background:#f2f6ff;
-overflow-x:hidden;
-}
+        /* بروفايل الطالب في القائمة الجانبية */
+        .sidebar-profile {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 3px solid #ffd700;
+            margin-bottom: 1rem;
+        }
 
+        .sidebar-profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid #ffd700;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
 
-        /* Header Style */
-        .header {
-            background: linear-gradient(135deg, #0b3b5c 0%, #1a5f7a 100%);
+        .sidebar-profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sidebar-profile-name {
             color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .sidebar-profile-id {
+            color: #ffd700;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s;
+            border-right: 4px solid transparent;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar a:hover {
+            background: rgba(255,255,255,0.1);
+            border-right-color: #ffd700;
+            padding-right: 35px;
+        }
+
+        .sidebar a i {
+            margin-left: 10px;
+            width: 20px;
+            color: #ffd700;
+        }
+
+        .sidebar a.disabled-link {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .sidebar a.disabled-link i {
+            color: #ccc;
+        }
+
+        /* ===== الترويسة العلوية (بدون شعار) ===== */
+        .header {
+    width: 100%;
+    background: linear-gradient(135deg, #0b3b5c 0%, #1a5f7a 100%);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    display: none;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* أزرار الهيدر */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-btn-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1976d2, #0d47a1);
+            border: 2px solid #ffd700;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .menu-btn-circle:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: linear-gradient(135deg, #1565c0, #1976d2);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .logout-btn-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border: 2px solid #ffd700;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .logout-btn-circle:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        /* رسالة الترحيب */
+        .welcome-message {
+            color: #0a2f4a;
+            font-weight: 600;
+            font-size: 1rem;
+            background: #f0f7fc;
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid #ffd700;
+        }
+
+        .welcome-message i {
+            color: #ffd700;
+            margin-left: 8px;
+        }
+
+        .visitor-badge {
+            background: #ffd700;
+            color: #0a2f4a;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* ===== نموذج تسجيل الدخول ===== */
+        .login-container {
+            width: 100%;
+            max-width: 450px;
+            margin: 100px auto 50px;
+            background: white;
+            border-radius: 30px;
+            padding: 3rem 2rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .login-container h1 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .login-container h1 i {
+            color: #667eea;
+            margin-left: 10px;
+        }
+
+        .login-container p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-group i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .guest-btn {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .guest-btn:hover {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.4);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.5rem 0;
+            color: #666;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .divider::before {
+            margin-left: 1rem;
+        }
+
+        .divider::after {
+            margin-right: 1rem;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            display: none;
+            padding: 1rem;
+            background: #fde8e7;
+            border-radius: 50px;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* ===== المحتوى الرئيسي ===== */
+        .main-content {
+            width: 100%;
+            max-width: 1400px;
+            /* تم إزالة المسافة العلوية (margin-top) نهائياً */
+            margin-top: 0;
+            padding: 2rem;
+            display: none;
+        }
+
+        /* ===== الهيدر الرئيسي (العلوي) ===== */
+        .main-header {
+            background: linear-gradient(135deg, #0b3b5c 0%, #1a5f7a 100%);
+            color: blue;
             padding: 30px 0;
             border-radius: 0 0 50px 50px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             margin-bottom: 40px;
         }
-        
-        /* Cover Image Section */
-        .cover-image {
-            background: white;
-            border-radius: 30px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            text-align: center;
-            border: 1px solid rgba(0,0,0,0.05);
+
+        .cover-image-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 25px;
+            overflow: hidden;
         }
 
-        .cover-image h2 {
-            color: #0b3b5c;
-            font-size: 2.2em;
-            font-weight: 700;
-            margin-bottom: 25px;
-            border-bottom: 4px solid #1a5f7a;
-            display: inline-block;
-            padding-bottom: 8px;
-        }
-
- 
         .cover-image-container img {
             width: 100%;
             height: auto;
             display: block;
         }
 
-.card p{
-font-family:'Cairo', sans-serif;
-font-weight:700;
-font-size:18px;
-}
-
-/* الخلفية الطبية */
-
-.medical-bg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:url("https://i.servimg.com/u/f52/20/64/69/74/1aa_aa10.jpg");
-background-size:cover;
-opacity:0.07;
-z-index:-1;
-}
-
-/* القائمة الجانبية */
-
-.menu-btn{
-position:fixed;
-right:15px;
-top:15px;
-background:#1976d2;
-color:white;
-border:none;
-padding:10px;
-font-size:20px;
-border-radius:6px;
-z-index:1000;
-cursor:pointer;
-}
-
-.sidebar{
-height:100%;
-width:0;
-position:fixed;
-right:0;
-top:0;
-background:#0d47a1;
-overflow-x:hidden;
-transition:0.4s;
-padding-top:60px;
-z-index:999;
-}
-
-.sidebar a{
-display:block;
-color:white;
-padding:15px 25px;
-text-decoration:none;
-font-size:16px;
-}
-
-.sidebar a:hover{
-background:#1565c0;
-}
-
-/* اللوجو */
-
-.logo-wrap{
-position:relative;
-width:340px;
-max-width:85%;
-margin:30px auto;
-}
-
-.logo-wrap img{
-width:100%;
-display:block;
-}
-
-/* الضوء الذهبي */
-
-.logo-wrap::after{
-
-content:"";
-position:absolute;
-top:0;
-left:-120%;
-width:20%;
-height:100%;
-background:linear-gradient(120deg,transparent,rgba(255,215,0,0.9),transparent);
-transform:skewX(-20deg);
-animation:goldLight 3s infinite;
-
-}
-
-@keyframes goldLight{
-
-0%{left:-120%;}
-100%{left:140%;}
-
-}
-
-/* البحث */
-
-.search-box{
-
-width:85%;
-max-width:500px;
-margin:auto;
-
-}
-
-.search-box input{
-
-width:100%;
-padding:12px;
-border-radius:25px;
-border:1px solid #ccc;
-
-}
-
-/* شريط الأخبار */
-
-.news-container{
-
-width:90%;
-max-width:1000px;
-margin:25px auto;
-display:flex;
-align-items:center;
-background:linear-gradient(90deg,#0d47a1,#1976d2);
-border-radius:12px;
-box-shadow:0 6px 20px rgba(0,0,0,0.2);
-border:2px solid gold;
-overflow:hidden;
-
-}
-
-.news-title{
-
-background:linear-gradient(45deg,gold,#ffc107);
-color:#000;
-padding:12px 20px;
-font-weight:bold;
-white-space:nowrap;
-
-}
-
-.news-box{
-
-flex:1;
-overflow:hidden;
-padding:10px;
-
-}
-
-#newsTicker{
-
-white-space:nowrap;
-display:inline-block;
-padding-left:100%;
-color:white;
-font-size:15px;
-animation:scrollNews 35s linear infinite;
-
-}
-
-@keyframes scrollNews{
-
-0%{
-transform:translateX(-100%);
-}
-
-100%{
-transform:translateX(100%);
-}
-
-}
-
-#newsTicker{
-
-white-space:nowrap;
-display:inline-block;
-padding-right:100%;
-color:white;
-font-size:15px;
-animation:scrollNews 35s linear infinite;
-
-}
-/* معرض الصور */
-.swiper{
-width:100%;
-max-width:1200px;
-height:450px;
-margin:auto;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
-
-.swiper-slide img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.swiper-button-next,
-.swiper-button-prev{
-color:white;
-}
-
-.swiper-pagination-bullet{
-background:white;
-}
-/* الأقسام */
-
-.sections{
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:20px;
-padding:40px;
-
-}
-
-.card{
-
-padding:25px;
-border-radius:12px;
-color:white;
-text-align:center;
-cursor:pointer;
-
-}
-
-.card i{
-
-font-size:30px;
-margin-bottom:10px;
-
-}
-
-.c1{background:#ff7043}
-.c2{background:#29b6f6}
-.c3{background:#7e57c2}
-.c4{background:#66bb6a}
-.c5{background:#ffa726}
-.c6{background:#ec407a}
-.c7{background:#42a5f5}
-.c8{background:#26a69a}
-.c9{background:#8d6e63}
-.c10{background:#9ccc65}
-.c11{background:#fdd835}
-.c12{background:#ff7043}
-/* العداد */
-
-.counter{
-
-display:flex;
-justify-content:space-around;
-background:white;
-padding:30px;
-
-}
-
-.counter h2{
-
-font-size:35px;
-color:#1976d2;
-
-}
-
-footer{
-
-background:#0d47a1;
-color:white;
-text-align:center;
-padding:15px;
-
-}
-/* Contact & Footer */
+        /* ===== الخلفية الطبية ===== */
+        .medical-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("https://i.servimg.com/u/f52/20/64/69/74/1aa_aa10.jpg");
+            background-size: cover;
+            opacity: 0.07;
+            z-index: -1;
+        }
+
+        /* ===== البحث ===== */
+        .search-box {
+            width: 85%;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 1px solid #ccc;
+            font-family: 'Cairo', sans-serif;
+            font-size: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* ===== شريط الأخبار ===== */
+        .news-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto 50px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg, #0d47a1, #1976d2);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            border: 2px solid gold;
+            overflow: hidden;
+        }
+
+        .news-title {
+            background: linear-gradient(45deg, gold, #ffc107);
+            color: #000;
+            padding: 12px 20px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .news-box {
+            flex: 1;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        #newsTicker {
+            white-space: nowrap;
+            display: inline-block;
+            padding-right: 100%;
+            color: white;
+            font-size: 15px;
+            animation: scrollNews 35s linear infinite;
+        }
+
+        @keyframes scrollNews {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* ===== معرض الصور ===== */
+        .gallery-section {
+            margin: 50px auto 60px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            height: 300px;
+            margin: 0 auto;
+            border-radius: 30px;
+            overflow: visible;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            position: relative;
+            z-index: 1;
+        }
+
+        .swiper-wrapper {
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .swiper-slide {
+            width: 85%;
+            height: 100%;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.5;
+            transform: scale(0.5) translateX(100px);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            filter: blur(3px);
+            border: 3px solid transparent;
+        }
+
+        .swiper-slide-active {
+            opacity: 1;
+            transform: scale(1) translateX(0);
+            box-shadow: 0 40px 80px rgba(10,47,74,0.5);
+            z-index: 30;
+            filter: blur(0);
+            border: 4px solid #ffd966;
+        }
+
+        .swiper-slide-prev {
+            transform: scale(0.5) translateX(180px);
+            opacity: 0.5;
+            z-index: 10;
+            filter: blur(2px);
+        }
+
+        .swiper-slide-next {
+            transform: scale(0.5) translateX(-180px);
+            opacity: 0.25;
+            z-index: 10;
+            filter: blur(2px);
+        }
+
+        .swiper-slide-prev + .swiper-slide-prev {
+            transform: scale(0.4) translateX(280px);
+            opacity: 0.15;
+            filter: blur(4px);
+            z-index: 5;
+        }
+
+        .swiper-slide-next + .swiper-slide-next {
+            transform: scale(0.4) translateX(-280px);
+            opacity: 0.15;
+            filter: blur(4px);
+            z-index: 5;
+        }
+
+        .swiper-slide-prev + .swiper-slide-prev + .swiper-slide-prev {
+            transform: scale(0.3) translateX(380px);
+            opacity: 0.08;
+            filter: blur(5px);
+            z-index: 1;
+        }
+
+        .swiper-slide-next + .swiper-slide-next + .swiper-slide-next {
+            transform: scale(0.3) translateX(-380px);
+            opacity: 0.08;
+            filter: blur(5px);
+            z-index: 1;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            transition: transform 0.5s ease;
+        }
+
+        .swiper-slide-active:hover img {
+            transform: scale(1.03);
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white;
+            background: rgba(10,47,74,0.9);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255,255,255,0.4);
+            z-index: 40;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: rgba(10,47,74,1);
+            transform: scale(1.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            border-color: #ffd966;
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .swiper-pagination {
+            z-index: 40;
+        }
+
+        .swiper-pagination-bullet {
+            background: white;
+            width: 16px;
+            height: 16px;
+            opacity: 0.7;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            z-index: 40;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #ffd966;
+            opacity: 1;
+            transform: scale(1.5);
+            box-shadow: 0 0 25px #ffd966;
+        }
+
+        /* ===== المؤسسات التابعة ===== */
+        .institutions-bar {
+            background: linear-gradient(135deg, #0a2f4a, #15507a);
+            border-radius: 50px;
+            padding: 12px 20px;
+            margin: 0 auto 40px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            max-width: 1300px;
+        }
+
+        .institutions-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .institutions-title i {
+            margin-left: 8px;
+            color: #ffd966;
+        }
+
+        .institutions-scroll {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .institution-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 100px;
+            padding: 5px;
+        }
+
+        .institution-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .institution-image {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            margin-bottom: 5px;
+        }
+
+        .institution-item:hover .institution-image {
+            transform: scale(1.08);
+            border-color: #ffd966;
+        }
+
+        .institution-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .institution-name {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .institution-badge {
+            font-size: 0.7rem;
+            background: rgba(255,255,255,0.2);
+            padding: 3px 6px;
+            border-radius: 30px;
+            margin-top: 3px;
+            color: #ffd966;
+        }
+
+        /* ===== الأقسام (البطاقات) ===== */
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 25px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .section-card:hover .card-icon {
+            transform: scale(1.1);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .card-icon i {
+            font-size: 2.5rem;
+        }
+
+        .section-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .section-card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.9);
+            margin: 0;
+            line-height: 0.5;
+        }
+
+        .section-card.disabled-card {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+            filter: grayscale(0.5);
+        }
+
+        .section-card.disabled-card:hover {
+            transform: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        /* ألوان المربعات والأيقونات */
+        .section-card:nth-child(1) { background-color: #0a2f4a; }
+        .section-card:nth-child(2) { background-color: #e65c4f; }
+        .section-card:nth-child(3) { background-color: #2e8b57; }
+        .section-card:nth-child(4) { background-color: #ff8c42; }
+        .section-card:nth-child(5) { background-color: #4a90e2; }
+        .section-card:nth-child(6) { background-color: #9b59b6; }
+        .section-card:nth-child(7) { background-color: #f1c40f; }
+        .section-card:nth-child(8) { background-color: #1abc9c; }
+        .section-card:nth-child(9) { background-color: #e67e22; }
+        .section-card:nth-child(10) { background-color: #3498db; }
+        .section-card:nth-child(11) { background-color: #27ae60; }
+        .section-card:nth-child(12) { background-color: #95a5a6; }
+        .section-card:nth-child(1) .card-icon i { color: #0a2f4a; }
+        .section-card:nth-child(2) .card-icon i { color: #e65c4f; }
+        .section-card:nth-child(3) .card-icon i { color: #2e8b57; }
+        .section-card:nth-child(4) .card-icon i { color: #ff8c42; }
+        .section-card:nth-child(5) .card-icon i { color: #4a90e2; }
+        .section-card:nth-child(6) .card-icon i { color: #9b59b6; }
+        .section-card:nth-child(7) .card-icon i { color: #f1c40f; }
+        .section-card:nth-child(8) .card-icon i { color: #1abc9c; }
+        .section-card:nth-child(9) .card-icon i { color: #e67e22; }
+        .section-card:nth-child(10) .card-icon i { color: #3498db; }
+        .section-card:nth-child(11) .card-icon i { color: #27ae60; }
+        .section-card:nth-child(12) .card-icon i { color: #95a5a6; }
+
+        /* ===== العداد ===== */
+        .counter {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 1300px;
+            border-radius: 50px;
+        }
+
+        .counter h2 {
+            font-size: 35px;
+            color: #1976d2;
+        }
+
+        /* ===== قسم الفيديو ===== */
+        .video-section {
+            width: 100%;
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .video-container {
+            background: white;
+            border-radius: 30px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(10,47,74,0.1);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+        }
+
+        /* ===== معلومات التواصل ===== */
         .contact-info {
             background: linear-gradient(135deg, #0b3b5c, #1a5f7a);
             color: white;
             border-radius: 30px;
             padding: 40px;
             text-align: center;
-            margin: 40px 0;
+            max-width: 1300px;
+            margin: 0 auto 40px;
         }
+
         .contact-info h2 {
             font-size: 2.2em;
             margin-bottom: 25px;
         }
+
         .contact-details {
             display: flex;
             flex-wrap: wrap;
@@ -365,265 +879,721 @@ padding:15px;
             gap: 40px;
             font-size: 1.2em;
         }
+
         .contact-details a {
             color: white;
             text-decoration: none;
             border-bottom: 2px solid transparent;
             transition: 0.3s;
         }
+
         .contact-details a:hover {
             border-bottom-color: white;
         }
 
-</style>
+        /* ===== الفوتر ===== */
+        .footer {
+            background: #0d47a1;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            border-radius: 30px 30px 0 0;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* ===== تحسينات الاستجابة ===== */
+        @media (max-width: 992px) {
+            .swiper { height: 450px; }
+            .swiper-slide { width: 50%; }
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                margin: 100px auto 30px;
+                width: 90%;
+                padding: 2rem 1.5rem;
+            }
+            
+            .sidebar-profile-img {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .header-content {
+                padding: 0.5rem 1rem;
+            }
+            
+            .welcome-message {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+            
+            /* تم إزالة margin-top هنا أيضاً */
+            
+            .swiper { height: 400px; }
+            .swiper-slide { width: 70%; }
+            
+            .institutions-bar { padding: 10px 15px; }
+            .institution-item { min-width: 85px; }
+            .institution-image { width: 55px; height: 55px; }
+            
+            .sections-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .section-card { padding: 20px 15px; }
+            .card-icon { width: 65px; height: 65px; }
+            
+            .counter { flex-direction: column; gap: 20px; text-align: center; }
+            .contact-details { flex-direction: column; gap: 15px; }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 80px auto 30px;
+                padding: 2rem 1.2rem;
+            }
+            
+            .header-content {
+                padding: 0.5rem;
+            }
+            
+            .menu-btn-circle, .logout-btn-circle {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .welcome-message {
+                display: none; /* إخفاء رسالة الترحيب في الشاشات الصغيرة */
+            }
+            
+            /* تم إزالة margin-top هنا أيضاً */
+            
+            .swiper { height: 350px; }
+            .swiper-slide { width: 85%; }
+            
+            .sections-grid { grid-template-columns: 1fr; gap: 12px; }
+            .section-card {
+                padding: 18px 15px;
+                flex-direction: row;
+                text-align: right;
+                gap: 15px;
+            }
+            .card-icon {
+                width: 55px;
+                height: 55px;
+                margin-bottom: 0;
+            }
+            .section-card h3 {
+                font-size: 1rem;
+                margin-bottom: 3px;
+            }
+            .section-card p {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
 </head>
-<div class="header">
-
-      <div class="cover-image-container">
-<img src="https://i.servimg.com/u/f52/20/64/69/74/11110010.png">
-</div>
-</div>
-<div class="medical-bg"></div>
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-<nav id="sidebar" class="sidebar">
-<a href="index.html">الرئيسية</a>
-<a href="pages/about.html"> حول الكلية</a>
-<a href="pages/departments.html">الأقسام</a>
-<a href="pages/lectures.html">المحاضرات</a>
-<a href="pages/schedule.html">الجداول</a>
-<a href="pages/results.html">النتائج</a>
-<a href="pages/library.html">مكتبة الكلية</a>
-<a href="pages/activities.html">الأنشطة الطلابية</a>
-<a href="pages/admissions.html">التسجيل والقبول</a>
-<a href="pages/alumni.html">الخريجين</a>
-<a href="pages/conferences.html">المؤتمرات</a>
-<a href="pages/sustainability.html">التنمية المستدامة</a>
-<a href="pages/forms.html">النماذج الإدارية</a>
-
-</nav>
-
-<!-- اللوجو -->
-
-  
-
-<!-- البحث -->
-
-<div class="search-box">
-
-<input type="text" placeholder="ابحث في موقع الكلية">
-
-</div>
-
-<!-- شريط الأخبار -->
-
-<div class="news-container">
-
-<div class="news-title">
-📰 أخبار الكلية
-</div>
-
-<div class="news-box">
-
-<div id="newsTicker">جاري تحميل الأخبار...</div>
-
-</div>
-
-</div>
-
-<!-- معرض الصور -->
-<div class="swiper mySwiper">
-
-<div class="swiper-wrapper">
-
-<div class="swiper-slide">
-<img src="images/1.png">
-</div>
-
-<div class="swiper-slide">
-<img src="images/2.png">
-</div>
-
-<div class="swiper-slide">
-<img src="images/3.jpg">
-</div>
-
-<div class="swiper-slide">
-<img src="images/4.png">
-</div>
-
-</div>
-
-<div class="swiper-pagination"></div>
-
-<div class="swiper-button-next"></div>
-<div class="swiper-button-prev"></div>
-
-</div>
-
-<!-- الأقسام -->
-
-<div class="sections">
-<div class="card c1" onclick="location.href='pages/about.html'"><i class="fa-solid fa-building"></i><p>حول الكلية</p></div>
-
-<div class="card c2" onclick="location.href='pages/departments.html'"><i class="fa-solid fa-building"></i><p>الأقسام</p></div>
-
-<div class="card c3" onclick="location.href='pages/lectures.html'"><i class="fa-solid fa-book"></i><p>المحاضرات</p></div>
-
-<div class="card c4" onclick="location.href='pages/schedule.html'"><i class="fa-solid fa-calendar"></i><p>الجداول</p></div>
-
-<div class="card c5" onclick="location.href='pages/results.html'"><i class="fa-solid fa-chart-line"></i><p>النتائج</p></div>
-
-<div class="card c6" onclick="location.href='pages/library.html'"><i class="fa-solid fa-book-open"></i><p>مكتبة الكلية</p></div>
-
-<div class="card c7" onclick="location.href='pages/activities.html'"><i class="fa-solid fa-users"></i><p>الأنشطة</p></div>
-
-<div class="card c8" onclick="location.href='pages/admissions.html'"><i class="fa-solid fa-user-check"></i><p>التسجيل والقبول</p></div>
-
-<div class="card c9" onclick="location.href='pages/alumni.html'"><i class="fa-solid fa-user-graduate"></i><p>الخريجين</p></div>
-
-<div class="card c10" onclick="location.href='pages/conferences.html'"><i class="fa-solid fa-microscope"></i><p>المؤتمرات</p></div>
-
-<div class="card c11" onclick="location.href='pages/sustainability.html'"><i class="fa-solid fa-leaf"></i><p>التنمية المستدامة</p></div>
-
-<div class="card c12" onclick="location.href='pages/forms.html'"><i class="fa-solid fa-file-lines"></i><p>النماذج الإدارية</p></div>
-
-</div>
-
-<!-- العداد -->
-
-<div class="counter">
-
-<div>
-
-<h2 id="students">0</h2>
-<p>الطلاب</p>
-
-</div>
-
-<div>
-
-<h2 id="staff">0</h2>
-<p>هيئة التدريس</p>
-
-</div>
-
-<div>
-
-<h2 id="graduates">0</h2>
-<p>الخريجون</p>
-
-</div>
-
-</div>
-
-
-    <!-- Contact Information -->
-    <section class="contact-info">
-        <h2><i class="fas fa-address-card"></i> معلومات التواصل</h2>
-        <div class="contact-details">
-            <div><i class="fas fa-phone-alt"></i> 0919996700 - 0917853267 - 0922535355</div>
-            <div><i class="fas fa-envelope"></i> <a href="mailto:ALNAHADA1313@gmail.com">ALNAHADA1313@gmail.com</a></div>
-            <div><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/1313alnahda.aljadida" target="_blank">صفحتنا على فيسبوك</a></div>
+<body>
+    <!-- القائمة الجانبية مع بروفايل الطالب -->
+    <nav id="sidebar" class="sidebar">
+        <!-- بروفايل الطالب في القائمة الجانبية -->
+        <div class="sidebar-profile" id="sidebarProfile">
+            <div class="sidebar-profile-img" id="sidebarProfileImg">
+                <img src="" alt="صورة الطالب" id="studentSidebarImage">
+            </div>
+            <div class="sidebar-profile-name" id="studentSidebarName"></div>
+            <div class="sidebar-profile-id" id="studentSidebarId"></div>
         </div>
-    </section>
-  <!-- Footer -->
-    <footer class="footer">
-        <p>كلية النهضة الجديدة للتقنية الطبية والتمريض © 2026 | جميع الحقوق محفوظة</p>
-        <p>مدينة طبرق - ليبيا</p>
-    </footer>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<script>
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="pages/about.html"><i class="fas fa-info-circle"></i> حول الكلية</a>
+        <a href="pages/departments.html"><i class="fas fa-building"></i> الأقسام</a>
+        <a href="pages/lectures.html" class="restricted-link" id="lecturesLink"><i class="fas fa-video"></i> المحاضرات</a>
+        <a href="pages/schedule.html" class="restricted-link" id="scheduleLink"><i class="fas fa-calendar-alt"></i> الجداول</a>
+        <a href="pages/results.html"><i class="fas fa-chart-bar"></i> النتائج</a>
+        <a href="pages/admissions.html"><i class="fas fa-user-check"></i> التسجيل والقبول</a>
+        <a href="pages/alumni.html"><i class="fas fa-user-graduate"></i> الخريجين</a>
+        <a href="pages/library.html"><i class="fas fa-book-open"></i> المكتبة الرقمية</a>
+        <a href="pages/activities.html"><i class="fas fa-users"></i> الأنشطة</a>
+        <a href="pages/conferences.html"><i class="fas fa-microscope"></i> المؤتمرات</a>
+        <a href="pages/sustainability.html"><i class="fas fa-leaf"></i> التنمية المستدامة</a>
+        <a href="pages/forms.html" class="restricted-link" id="formsLink"><i class="fas fa-file-lines"></i> النماذج الإدارية</a>
+        <a href="#" onclick="logout()" style="border-top: 1px solid rgba(255,255,255,0.2); margin-top: 1rem;">
+            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+        </a>
+    </nav>
 
-var swiper = new Swiper(".mySwiper", {
+    <!-- الترويسة العلوية (بدون شعار) -->
+    <header class="header" id="mainHeader">
+        <div class="header-content">
+            <div class="header-actions">
+                <button class="menu-btn-circle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <span class="welcome-message" id="welcomeMessage">
+                    <i class="fas fa-user-graduate"></i>
+                    <span id="userNameDisplay"></span>
+                    <span class="visitor-badge" id="visitorBadge" style="display: none;">مرحبا بك  </span>
+                </span>
+            </div>
+            <div class="header-actions">
+                <button class="logout-btn-circle" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
-loop:true,
+    <!-- نموذج تسجيل الدخول -->
+    <div class="login-container" id="loginContainer">
+        <h1><i class="fas fa-graduation-cap"></i> تسجيل دخول الطلاب</h1>
+        <p>الرجاء إدخال رقمك الدراسي وكلمة المرور</p>
+        
+        <div class="login-form">
+            <div class="input-group">
+                <i class="fas fa-id-card"></i>
+                <input type="text" id="studentId" placeholder="الرقم الدراسي" dir="ltr">
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="studentPassword" placeholder="كلمة المرور" dir="ltr">
+            </div>
+            
+            <button class="login-btn" onclick="login()">
+                <i class="fas fa-sign-in-alt"></i> دخول
+            </button>
+            
+      لست طالباً بالكلية 
+            <button class="guest-btn" onclick="guestLogin()">
+                <i class="fas fa-user"></i> الدخول كزائر
+            </button>
+            
+            <div class="error-message" id="errorMessage">
+                <i class="fas fa-exclamation-circle"></i> الرقم الدراسي أو كلمة المرور غير صحيحة
+            </div>
+        </div>
+    </div>
 
-autoplay:{
-delay:4000,
-disableOnInteraction:false,
-},
+    <!-- المحتوى الرئيسي (يظهر بعد تسجيل الدخول) -->
+    <div class="main-content" id="mainContent">
+        <!-- الهيدر الرئيسي (العلوي) -->
+        <div class="main-header">
+            <div class="cover-image-container">
+                <img src="https://i.servimg.com/u/f52/20/64/69/74/11110010.png" alt="كلية النهضة">
+            </div>
+        </div>
 
-pagination:{
-el:".swiper-pagination",
-clickable:true,
-},
+        <div class="medical-bg"></div>
 
-navigation:{
-nextEl:".swiper-button-next",
-prevEl:".swiper-button-prev",
-},
+        <!-- البحث -->
+        <div class="search-box">
+            <input type="text" placeholder="اضغط للبحث ">
+        </div>
 
-});
+        <!-- شريط الأخبار -->
+        <div class="news-container">
+            <div class="news-title">📰 أخبار الكلية</div>
+            <div class="news-box">
+                <div id="newsTicker">جاري تحميل الأخبار...</div>
+            </div>
+        </div>
 
-</script>
-<script>
+        <!-- ===== معرض الصور ===== -->
+        <div class="gallery-section">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://i.servimg.com/u/f52/20/64/69/74/1212.png" alt="صورة 1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://i.servimg.com/u/f52/20/64/69/74/410.jpg" alt="صورة 2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://i.servimg.com/u/f52/20/64/69/74/111.png" alt="صورة 3">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://i.servimg.com/u/f52/20/64/69/74/211.png" alt="صورة 4">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
 
-/* القائمة الجانبية */
+        <!-- ===== الأقسام ===== -->
+        <div class="sections-grid" id="sectionsGrid">
+            <div class="section-card" onclick="navigateTo('pages/about.html')">
+                <div class="card-icon"><i class="fas fa-building"></i></div>
+                <h3>حول الكلية</h3>
+                <p>تعرف على رؤيتنا ورسالتنا</p>
+            </div>
+            <div class="section-card" onclick="navigateTo('pages/departments.html')">
+                <div class="card-icon"><i class="fas fa-sitemap"></i></div>
+                <h3>الأقسام</h3>
+                <p>الأقسام العلمية والتخصصات</p>
+            </div>
+            <div class="section-card" id="lecturesCard" onclick="navigateToRestricted('pages/lectures.html')">
+                <div class="card-icon"><i class="fas fa-book"></i></div>
+                <h3>المحاضرات</h3>
+                <p>مكتبة المحاضرات المسجلة</p>
+            </div>
+            <div class="section-card" id="scheduleCard" onclick="navigateToRestricted('pages/schedule.html')">
+                <div class="card-icon"><i class="fas fa-calendar"></i></div>
+                <h3>الجداول</h3>
+                <p>جداول المحاضرات والامتحانات</p>
+            </div>
+            <div class="section-card" onclick="navigateTo('pages/results.html')">
+                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>النتائج</h3>
+                <p>نتائج الامتحانات</p>
+            </div>
+            <div class="section-card" onclick="navigateTo('pages/library.html')">
+                <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                <h3>مكتبة الكلية</h3>
+                <p>الكتب والمراجع العلمية</p>
+            </div>
+            <div class="section-card" onclick="navigateTo('pages/activities.html')">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <h3>الأنشطة</h3>
+                <p>الأنشطة الطلابية والفعاليات</p>
+            </div>
+            <div class="section-card" onclick="navigateTo('pages/admissions.html')">
+                <div class="card-icon"><i class="fas fa-user-check"></i></div>
+                <h3>التسجيل والقبول</h3>
+                <p>شروط وإجراءات التقديم</p>
+            </div>
+            <div class="section-card" onclick="navigateTo('pages/alumni.html')">
+                <div class="card-icon"><i class="fas fa-user-graduate"></i></div>
+                <h3>الخريجين</h3>
+                <p>نادي الخريجين والإنجازات</p>
+            </div>
+            <div class="section-card" onclick="navigateTo('pages/conferences.html')">
+                <div class="card-icon"><i class="fas fa-microscope"></i></div>
+                <h3>المؤتمرات</h3>
+                <p>المؤتمرات والندوات العلمية</p>
+            </div>
+            <div class="section-card" onclick="navigateTo('pages/sustainability.html')">
+                <div class="card-icon"><i class="fas fa-leaf"></i></div>
+                <h3>التنمية المستدامة</h3>
+                <p>مبادرات واستدامة</p>
+            </div>
+            <div class="section-card" id="formsCard" onclick="navigateToRestricted('pages/forms.html')">
+                <div class="card-icon"><i class="fas fa-file-lines"></i></div>
+                <h3>النماذج الإدارية</h3>
+                <p>طلبات ومعاملات</p>
+            </div>
+        </div>
 
-function toggleMenu(){
+        <!-- العداد -->
+        <div class="counter">
+            <div>
+                <h2 id="students">0</h2>
+                <p>الطلاب</p>
+            </div>
+            <div>
+                <h2 id="staff">0</h2>
+                <p>هيئة التدريس</p>
+            </div>
+            <div>
+                <h2 id="graduates">0</h2>
+                <p>الخريجون</p>
+            </div>
+        </div>
 
-let menu=document.getElementById("sidebar");
+        <!-- ===== المؤسسات التابعة ===== -->
+        <div class="institutions-bar">
+            <div class="institutions-title">
+                <i class="fas fa-university"></i> المؤسسات التابعة لنا
+            </div>
+            
+            <div class="institutions-scroll">
+                <div class="institution-item" onclick="window.open('https://www.facebook.com/profile.php?id=61579043079327')">
+                    <div class="institution-image">
+                        <img src="https://i.servimg.com/u/f52/20/64/69/74/101010.png" alt="جامعة النهضة الجديدة">
+                    </div>
+                    <div class="institution-name">
+                        جامعة النهضة الجديدة 
+                        <div class="institution-badge">طبرق - التحكم</div>
+                    </div>
+                </div>
+                
+                <div class="institution-item" onclick="window.open('https://www.facebook.com/profile.php?id=100078257972167', '_blank')">
+                    <div class="institution-image">
+                        <img src="https://i.servimg.com/u/f52/20/64/69/74/_ac_aa10.png" alt="معهد النهضة المتوسط">
+                    </div>
+                    <div class="institution-name">
+                        معهد النهضة الجديدة المتوسط
+                        <div class="institution-badge">طبرق - الميدان</div>
+                    </div>
+                </div>
 
-menu.style.width = menu.style.width==="250px" ? "0":"250px";
+                <div class="institution-item" onclick="window.open('https://www.facebook.com/1313alnahda.aljadida?locale=ar_AR')">
+                    <div class="institution-image">
+                        <img src="https://i.servimg.com/u/f52/20/64/69/74/aoi210.png" alt="معهد النهضة العالي">
+                    </div>
+                    <div class="institution-name">
+                        معهد النهضة العالي
+                        <div class="institution-badge">للعلوم الطبية والتمريض</div>
+                    </div>
+                </div>
 
-}
+                <div class="institution-item" onclick="window.open('https://www.facebook.com/1313alnahda.aljadida?locale=ar_AR')">
+                    <div class="institution-image">
+                        <img src="https://i.servimg.com/u/f52/20/64/69/74/aii_aa10.png" alt="مدرسة النهضة الجديدة">
+                    </div>
+                    <div class="institution-name">
+                        مدرسة النهضة الجديدة 
+                        <div class="institution-badge">للتعليم الخاص - طبرق</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-/* العداد */
+        <!-- ===== قسم عرض الفيديو ===== -->
+        <div class="video-section">
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/LayV4thJIGc" 
+                            title="فيديو تعريفي كلية النهضة" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
 
-function counter(id,end){
+        <!-- معلومات التواصل -->
+        <section class="contact-info">
+            <h2><i class="fas fa-address-card"></i> معلومات التواصل</h2>
+            <div class="contact-details">
+                <div><i class="fas fa-phone-alt"></i> 0919996700 - 0917853267 - 0922535355</div>
+                <div><i class="fas fa-envelope"></i> <a href="mailto:ALNAHADA1313@gmail.com">ALNAHADA1313@gmail.com</a></div>
+                <div><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/1313alnahda.aljadida" target="_blank">صفحتنا على فيسبوك</a></div>
+            </div>
+        </section>
 
-let obj=document.getElementById(id);
+        <!-- الفوتر -->
+        <footer class="footer">
+            <p>كلية النهضة الجديدة للتقنية الطبية والتمريض © 2026 | جميع الحقوق محفوظة</p>
+            <p>مدينة طبرق - ليبيا</p>
+        </footer>
+    </div>
 
-let count=0;
+    <!-- السكريبتات -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // ============================================================
+        // 1. إعدادات Google Sheets - رابط بيانات الطلاب
+        // ============================================================
+        const STUDENT_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vThUSzrh88miBkYMb5Bx6zlU_P0byNGGymU8rjeNZ5h37mkEmFq7w-FJREsN-7wffKyDwhOmSfRQ-bI/pub?output=csv&gid=709616702';
+        
+        // بيانات الطلاب
+        let studentsData = [];
+        let isVisitor = false;
 
-let timer=setInterval(function(){
+        // ============================================================
+        // 2. تحميل بيانات الطلاب من Google Sheets
+        // ============================================================
+        async function loadStudentsData() {
+            try {
+                const response = await fetch(STUDENT_SHEET_URL);
+                const csvText = await response.text();
+                
+                const rows = csvText.split('\n').map(row => {
+                    const matches = row.match(/(".*?"|[^,]+)(?=\s*,|\s*$)/g);
+                    return matches ? matches.map(cell => cell.replace(/^"|"$/g, '').trim()) : [];
+                });
+                
+                const validRows = rows.filter(row => row.length > 0);
+                
+                if (validRows.length < 2) {
+                    console.error('لا توجد بيانات كافية');
+                    return;
+                }
+                
+                const headers = validRows[0].map(h => h.trim());
+                
+                for (let i = 1; i < validRows.length; i++) {
+                    const row = validRows[i];
+                    if (row.length < 4) continue;
+                    
+                    const student = {};
+                    headers.forEach((header, index) => {
+                        if (index < row.length) {
+                            student[header] = row[index] || '';
+                        }
+                    });
+                    
+                    studentsData.push(student);
+                }
+                
+                console.log('✅ تم تحميل بيانات الطلاب:', studentsData);
+                
+            } catch (error) {
+                console.error('❌ خطأ في تحميل بيانات الطلاب:', error);
+            }
+        }
 
-count++;
+        // ============================================================
+        // 3. التحقق من تسجيل الدخول المخزن
+        // ============================================================
+        function checkSavedLogin() {
+            const savedStudent = localStorage.getItem('loggedInStudent');
+            const savedVisitor = localStorage.getItem('isVisitor');
+            
+            if (savedVisitor === 'true') {
+                showVisitorUI();
+            } else if (savedStudent) {
+                const student = JSON.parse(savedStudent);
+                showLoggedInUI(student);
+            }
+        }
 
-obj.innerHTML=count;
+        // ============================================================
+        // 4. دالة تسجيل الدخول
+        // ============================================================
+        function login() {
+            const studentId = document.getElementById('studentId').value.trim();
+            const password = document.getElementById('studentPassword').value.trim();
+            
+            const student = studentsData.find(s => 
+                (s.student_id === studentId || s.رقم_الطالب === studentId) && 
+                (s.password === password || s.كلمة_السر === password)
+            );
+            
+            if (student) {
+                localStorage.setItem('loggedInStudent', JSON.stringify(student));
+                localStorage.removeItem('isVisitor');
+                isVisitor = false;
+                showLoggedInUI(student);
+            } else {
+                document.getElementById('errorMessage').classList.add('show');
+                setTimeout(() => {
+                    document.getElementById('errorMessage').classList.remove('show');
+                }, 3000);
+            }
+        }
 
-if(count==end) clearInterval(timer);
+        // ============================================================
+        // 5. دالة تسجيل الدخول كزائر
+        // ============================================================
+        function guestLogin() {
+            localStorage.setItem('isVisitor', 'true');
+            localStorage.removeItem('loggedInStudent');
+            isVisitor = true;
+            showVisitorUI();
+        }
 
-},5);
+        // ============================================================
+        // 6. إظهار واجهة المستخدم للطالب
+        // ============================================================
+        function showLoggedInUI(student) {
+            const studentName = student.name || student.الاسم || student.اسم_الطالب || 'طالب/ة';
+            const studentId = student.student_id || student.رقم_الطالب || '';
+            const studentImage = student.image || student.صورة || student.الصورة || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
+            
+            document.getElementById('loginContainer').style.display = 'none';
+            
+            document.getElementById('studentSidebarName').textContent = studentName;
+            document.getElementById('studentSidebarId').textContent = `رقم: ${studentId}`;
+            document.getElementById('studentSidebarImage').src = studentImage;
+            
+            document.getElementById('mainHeader').style.display = 'block';
+            document.getElementById('userNameDisplay').textContent = studentName;
+            document.getElementById('visitorBadge').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            
+            // إزالة القيود عن الروابط المقيدة
+            enableAllLinks();
+        }
 
-}
+        // ============================================================
+        // 7. إظهار واجهة المستخدم للزائر
+        // ============================================================
+        function showVisitorUI() {
+            document.getElementById('loginContainer').style.display = 'none';
+            
+            document.getElementById('studentSidebarName').textContent = 'زائر';
+            document.getElementById('studentSidebarId').textContent = '';
+            document.getElementById('studentSidebarImage').src = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
+            
+            document.getElementById('mainHeader').style.display = 'block';
+            document.getElementById('userNameDisplay').textContent = 'زائر';
+            document.getElementById('visitorBadge').style.display = 'inline-block';
+            document.getElementById('mainContent').style.display = 'block';
+            
+            // تطبيق القيود على الروابط المقيدة
+            restrictLinks();
+        }
 
-counter("students",356);
-counter("staff",37);
-counter("graduates",186);
+        // ============================================================
+        // 8. تطبيق القيود على الروابط (للزائر)
+        // ============================================================
+        function restrictLinks() {
+            // تعطيل روابط القائمة الجانبية
+            document.querySelectorAll('.restricted-link').forEach(link => {
+                link.classList.add('disabled-link');
+                link.removeAttribute('href');
+                link.style.cursor = 'not-allowed';
+            });
+            
+            // تعطيل بطاقات الأقسام
+            document.getElementById('lecturesCard').classList.add('disabled-card');
+            document.getElementById('scheduleCard').classList.add('disabled-card');
+            document.getElementById('formsCard').classList.add('disabled-card');
+        }
 
-/* جلب الأخبار من Google Sheets */
+        // ============================================================
+        // 9. إزالة القيود عن الروابط (للطلاب)
+        // ============================================================
+        function enableAllLinks() {
+            document.querySelectorAll('.restricted-link').forEach(link => {
+                link.classList.remove('disabled-link');
+                if (link.id === 'lecturesLink') link.href = 'pages/lectures.html';
+                if (link.id === 'scheduleLink') link.href = 'pages/schedule.html';
+                if (link.id === 'formsLink') link.href = 'pages/forms.html';
+                link.style.cursor = 'pointer';
+            });
+            
+            document.getElementById('lecturesCard').classList.remove('disabled-card');
+            document.getElementById('scheduleCard').classList.remove('disabled-card');
+            document.getElementById('formsCard').classList.remove('disabled-card');
+        }
 
-const sheetURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vRibiMH1M0n1tSV0CfL-0vFHAfqDG2uGUs6nKFFvG9bWt-l-AxRZ0ip-v1ZHU7RtyHdYcX9iYoxZYd9/pub?output=csv";
+        // ============================================================
+        // 10. دالة التنقل للصفحات المفتوحة
+        // ============================================================
+        function navigateTo(url) {
+            window.location.href = url;
+        }
 
-fetch(sheetURL)
+        // ============================================================
+        // 11. دالة التنقل للصفحات المقيدة
+        // ============================================================
+        function navigateToRestricted(url) {
+            if (isVisitor) {
+                alert('عذراً، هذه الصفحة متاحة فقط للطلاب المسجلين');
+            } else {
+                window.location.href = url;
+            }
+        }
 
-.then(res=>res.text())
+        // ============================================================
+        // 12. دالة تسجيل الخروج
+        // ============================================================
+        function logout() {
+            localStorage.removeItem('loggedInStudent');
+            localStorage.removeItem('isVisitor');
+            isVisitor = false;
+            location.reload();
+        }
 
-.then(data=>{
+        // ============================================================
+        // 13. دالة القائمة الجانبية
+        // ============================================================
+        function toggleMenu() {
+            let menu = document.getElementById("sidebar");
+            menu.style.width = menu.style.width === "250px" ? "0" : "250px";
+        }
 
-let rows=data.split("\n");
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById("sidebar");
+            const menuBtn = document.querySelector('.menu-btn-circle');
+            
+            if (menu.style.width === "250px" && 
+                !menu.contains(event.target) && 
+                !menuBtn.contains(event.target)) {
+                menu.style.width = "0";
+            }
+        });
 
-let news=rows.slice(1)
+        // ============================================================
+        // 14. Swiper
+        // ============================================================
+        var swiper = new Swiper('.swiper', {
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: 100,
+            loop: true,
+            loopAdditionalSlides: 6,
+            speed: 900,
+            grabCursor: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                320: { spaceBetween: 50, slidesPerView: 1.1 },
+                480: { spaceBetween: 70, slidesPerView: 1.2 },
+                768: { spaceBetween: 80, slidesPerView: 1.3 },
+                992: { spaceBetween: 90, slidesPerView: 1.4 },
+                1200: { spaceBetween: 100, slidesPerView: 1.5 },
+            }
+        });
 
-.map(r=>r.trim())
+        // ============================================================
+        // 15. العداد
+        // ============================================================
+        function counter(id, end) {
+            let obj = document.getElementById(id);
+            let count = 0;
+            let timer = setInterval(function() {
+                count++;
+                obj.innerHTML = count;
+                if (count == end) clearInterval(timer);
+            }, 5);
+        }
 
-.filter(r=>r!=="")
+        counter("students", 356);
+        counter("staff", 37);
+        counter("graduates", 186);
 
-.join(" 🔶 ");
+        // ============================================================
+        // 16. جلب الأخبار
+        // ============================================================
+        const newsSheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRibiMH1M0n1tSV0CfL-0vFHAfqDG2uGUs6nKFFvG9bWt-l-AxRZ0ip-v1ZHU7RtyHdYcX9iYoxZYd9/pub?output=csv";
 
-document.getElementById("newsTicker").innerText=news;
+        fetch(newsSheetURL)
+            .then(res => res.text())
+            .then(data => {
+                let rows = data.split("\n");
+                let news = rows.slice(1)
+                    .map(r => r.trim())
+                    .filter(r => r !== "")
+                    .join(" 🔶 ");
+                document.getElementById("newsTicker").innerText = news;
+            });
 
-});
+        // ============================================================
+        // 17. Service Worker
+        // ============================================================
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function() {
+                    console.log("Service Worker Registered");
+                });
+        }
 
-</script><script>
-if ('serviceWorker' in navigator) {
-navigator.serviceWorker.register('/sw.js')
-.then(function() {
-console.log("Service Worker Registered");
-});
-}
-</script>
+        // ============================================================
+        // 18. التحميل الأولي
+        // ============================================================
+        window.onload = async function() {
+            await loadStudentsData();
+            checkSavedLogin();
+        };
+    </script>
 </body>
 </html>
