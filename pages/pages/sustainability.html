@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>كلية النهضة الجديدة – التنمية المستدامة</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(165deg, #eef5fc 0%, #f8fbfe 80%);
+            min-height: 100vh;
+            color: #022b40;
+            padding: 0;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+/* القائمة الجانبية */
+
+.menu-btn{
+position:fixed;
+right:15px;
+top:15px;
+background:#1976d2;
+color:white;
+border:none;
+padding:10px;
+font-size:20px;
+border-radius:6px;
+z-index:1000;
+cursor:pointer;
+}
+
+.sidebar{
+height:100%;
+width:0;
+position:fixed;
+right:0;
+top:0;
+background:#0d47a1;
+overflow-x:hidden;
+transition:0.4s;
+padding-top:60px;
+z-index:999;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:15px 25px;
+text-decoration:none;
+font-size:16px;
+}
+
+.sidebar a:hover{
+background:#1565c0;
+}
+
+        /* الخلفية الزرقاء للشعار - نفس النسق */
+        .logo-header {
+            background: #0a3a5c;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .logo-header img {
+            max-width: 100%;
+            height: auto;
+            max-height: 100px;
+            object-fit: contain;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 1.5rem 2rem 1.5rem;
+        }
+
+        /* النص التعريفي تحت الشعار */
+        .intro-text {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #05445E;
+            background: rgba(255,255,255,0.7);
+            padding: 1.2rem 2.5rem;
+            border-radius: 80px;
+            display: inline-block;
+            width: auto;
+            margin-right: auto;
+            margin-left: auto;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            border: 1px solid #b68b40;
+            backdrop-filter: blur(10px);
+        }
+
+        .intro-text span {
+            color: #b68b40;
+            font-size: 2.5rem;
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+
+        .intro-text i {
+            color: #b68b40;
+            margin: 0 0.7rem;
+        }
+
+        /* اقتباس الأمين العام */
+        .quote-card {
+            background: linear-gradient(145deg, #0a3a5c, #1a5780);
+            border-radius: 70px;
+            padding: 2.5rem 3rem;
+            margin-bottom: 3rem;
+            color: white;
+            box-shadow: 0 20px 35px rgba(5, 40, 60, 0.4);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 15rem;
+            color: rgba(255,255,255,0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.3rem;
+            color: #ffd966;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-author i {
+            font-size: 2rem;
+        }
+
+        /* بطاقة تعريف SDGs */
+        .sdg-intro {
+            background: white;
+            border-radius: 70px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 15px 30px rgba(0, 40, 60, 0.1);
+            border: 1px solid #e6eef9;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #05445E;
+        }
+
+        .sdg-intro p {
+            margin-bottom: 1rem;
+        }
+
+        .sdg-intro .highlight {
+            color: #b68b40;
+            font-weight: 700;
+        }
+
+        /* شبكة أهداف التنمية المستدامة */
+        .sdg-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .sdg-card {
+            background: white;
+            border-radius: 50px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 40, 60, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sdg-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0, 60, 90, 0.2);
+            border-color: #b68b40;
+        }
+
+        .sdg-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #b68b40, #ffd966);
+        }
+
+        .sdg-number {
+            display: inline-block;
+            background: #b68b40;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .sdg-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #05445E;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .sdg-icon {
+            font-size: 2.5rem;
+            color: #b68b40;
+            margin-bottom: 1rem;
+        }
+
+        .sdg-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            color: #2C6E49;
+            font-weight: 600;
+        }
+
+        .sdg-footer i {
+            color: #b68b40;
+            margin-left: 0.3rem;
+        }
+
+        /* بطاقة ختامية */
+        .closing-card {
+            background: linear-gradient(145deg, #f9f3e8, #fff9f0);
+            border-radius: 70px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 2px dashed #b68b40;
+            margin-bottom: 2rem;
+        }
+
+        .closing-card p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #05445E;
+        }
+
+        .closing-card i {
+            color: #b68b40;
+            font-size: 2rem;
+            margin: 0 1rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #205b78;
+            font-size: 0.95rem;
+        }
+
+        /* تحسينات للهاتف */
+        @media (max-width: 600px) {
+            .logo-header { padding: 1rem; }
+            .logo-header img { max-height: 70px; }
+            
+            .intro-text { 
+                font-size: 1.5rem; 
+                padding: 0.8rem 1.2rem;
+            }
+            .intro-text span { font-size: 1.8rem; }
+            
+            .quote-card { padding: 1.8rem; }
+            .quote-text { font-size: 1.3rem; }
+            .quote-author { font-size: 1.1rem; }
+            
+            .sdg-intro { padding: 1.8rem; font-size: 1rem; }
+            
+            .sdg-grid { grid-template-columns: 1fr; }
+            
+            .closing-card p { font-size: 1.2rem; }
+        }
+
+        /* تلوين خاص لكل هدف */
+        .sdg-card[data-goal="1"] { border-top: 6px solid #e5243b; }
+        .sdg-card[data-goal="2"] { border-top: 6px solid #DDA63A; }
+        .sdg-card[data-goal="3"] { border-top: 6px solid #4C9F38; }
+        .sdg-card[data-goal="4"] { border-top: 6px solid #C5192D; }
+        .sdg-card[data-goal="5"] { border-top: 6px solid #FF3A21; }
+        .sdg-card[data-goal="6"] { border-top: 6px solid #26BDE2; }
+        .sdg-card[data-goal="7"] { border-top: 6px solid #FCC30B; }
+        .sdg-card[data-goal="8"] { border-top: 6px solid #A21942; }
+        .sdg-card[data-goal="9"] { border-top: 6px solid #FD6925; }
+        .sdg-card[data-goal="10"] { border-top: 6px solid #DD1367; }
+        .sdg-card[data-goal="11"] { border-top: 6px solid #FD9D24; }
+        .sdg-card[data-goal="12"] { border-top: 6px solid #BF8B2E; }
+        .sdg-card[data-goal="13"] { border-top: 6px solid #3F7E44; }
+        .sdg-card[data-goal="14"] { border-top: 6px solid #0A97D9; }
+        .sdg-card[data-goal="15"] { border-top: 6px solid #56C02B; }
+        .sdg-card[data-goal="16"] { border-top: 6px solid #00689D; }
+        .sdg-card[data-goal="17"] { border-top: 6px solid #19486A; }
+    </style>
+</head>
+<body>
+    <!-- الهيدر بالشعار (نفس النسق) -->
+    <div class="logo-header">
+        <img src="https://i.servimg.com/u/f52/20/64/69/74/11110010.png" alt="كلية النهضة الجديدة" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22100%22%20viewBox%3D%220%200%20300%20100%22%3E%3Crect%20width%3D%22300%22%20height%3D%22100%22%20fill%3D%22%230a3a5c%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2265%22%20font-family%3D%22Arial%22%20font-size%3D%2236%22%20fill%3D%22%23ffffff%22%20font-weight%3D%22bold%22%3E%D9%83%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%86%D9%87%D8%B6%D8%A9%3C%2Ftext%3E%3C%2Fsvg%3E';">
+    </div>
+
+    <div class="medical-bg"></div>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<nav id="sidebar" class="sidebar">
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/index.html">الرئيسية</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/about.html"> حول الكلية</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/departments.html">الأقسام</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/lectures.html">المحاضرات</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/schedule.html">الجداول</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/results.html">النتائج</a>
+<a href="file:///D:/%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D8%AF%D9%8A%D9%84%D8%A7%D8%AA%20%D8%B9%D9%84%D9%8A%D9%87/nahda-college/pages/forms.html">النماذج الإدارية</a>
+</nav>
+
+    <!-- النص التعريفي تحت الشعار -->
+    <div class="intro-text">
+        <i class="fas fa-leaf"></i>
+        <span>🌍</span> التنمية المستدامة <span>🌱</span>
+        <i class="fas fa-hand-holding-heart"></i>
+    </div>
+
+    <div class="main-container">
+        <!-- اقتباس بان كي مون -->
+        <div class="quote-card">
+            <div class="quote-text">
+                "نحن بحاجة لإدخال الطاقة المستدامة في كل ركن في العالم مع تقنيات مثل شبكات الطاقة الشمسية المصرية، والأضواء التي تعمل بالطاقة الشمسية، وطواحين الهواء."
+            </div>
+            <div class="quote-author">
+                <i class="fas fa-quote-right"></i>
+                <strong>بان كي مون</strong> - أمين عام الأمم المتحدة الأسبق
+            </div>
+        </div>
+
+        <!-- تعريف أهداف التنمية المستدامة -->
+        <div class="sdg-intro">
+            <p>
+                <span class="highlight">🏛️ اعتمدت جميع الدول الأعضاء في الأمم المتحدة في عام 2015</span> أهداف التنمية المستدامة (SDGs)، والتي تُعرف أيضًا باسم الأهداف العالمية، باعتبارها دعوة عالمية للعمل على إنهاء الفقر وحماية الكوكب وضمان تمتع جميع الناس بالسلم والازدهار بحلول عام 2030.
+            </p>
+            <p>
+                <i class="fas fa-link" style="color: #b68b40;"></i> أهداف التنمية المستدامة السبعة عشر <span class="highlight">متكاملة</span> - أي أنها تدرك أن العمل في مجال ما سيؤثر على النتائج في مجالات أخرى، وأن التنمية يجب أن توازن بين الاستدامة الاجتماعية والاقتصادية والبيئية.
+            </p>
+            <p>
+                <i class="fas fa-users" style="color: #b68b40;"></i> من خلال التعهد بعدم ترك أي شخص في الخلف، التزمت البلدان بتسريع التقدم لأولئك الذين في الخلف بعد. هذا هو السبب في أن أهداف التنمية المستدامة مصممة لجعل العالم يتحول إلى الأفضل في العديد من جوانب الحياة، بما في ذلك الفقر المدقع والجوع والإيدز والتمييز ضد النساء والفتيات.
+            </p>
+        </div>
+
+        <!-- أهداف التنمية المستدامة - 17 هدف (مع تعديل كلمة "خير" إلى "مشروع") -->
+        <div class="sdg-grid">
+            <!-- الهدف 1 -->
+            <div class="sdg-card" data-goal="1">
+                <span class="sdg-number">الهدف 1</span>
+                <div class="sdg-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <div class="sdg-title">القضاء على الفقر</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 189 مشروع</span>
+                    <span><i class="fas fa-globe"></i></span>
+                </div>
+            </div>
+
+            <!-- الهدف 2 -->
+            <div class="sdg-card" data-goal="2">
+                <span class="sdg-number">الهدف 2</span>
+                <div class="sdg-icon"><i class="fas fa-wheat-alt"></i></div>
+                <div class="sdg-title">القضاء التام على الجوع</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 35 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 3 -->
+            <div class="sdg-card" data-goal="3">
+                <span class="sdg-number">الهدف 3</span>
+                <div class="sdg-icon"><i class="fas fa-heartbeat"></i></div>
+                <div class="sdg-title">الصحة الجيدة والرفاه</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 2001 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 4 -->
+            <div class="sdg-card" data-goal="4">
+                <span class="sdg-number">الهدف 4</span>
+                <div class="sdg-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="sdg-title">التعليم الجيد</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 10068 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 5 -->
+            <div class="sdg-card" data-goal="5">
+                <span class="sdg-number">الهدف 5</span>
+                <div class="sdg-icon"><i class="fas fa-venus-mars"></i></div>
+                <div class="sdg-title">المساواة بين الجنسين</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 94 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 6 -->
+            <div class="sdg-card" data-goal="6">
+                <span class="sdg-number">الهدف 6</span>
+                <div class="sdg-icon"><i class="fas fa-water"></i></div>
+                <div class="sdg-title">المياه النظيفة والنظافة الصحية</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 83 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 7 -->
+            <div class="sdg-card" data-goal="7">
+                <span class="sdg-number">الهدف 7</span>
+                <div class="sdg-icon"><i class="fas fa-solar-panel"></i></div>
+                <div class="sdg-title">طاقة نظيفة وبأسعار معقولة</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 152 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 8 -->
+            <div class="sdg-card" data-goal="8">
+                <span class="sdg-number">الهدف 8</span>
+                <div class="sdg-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="sdg-title">العمل اللائق ونمو الاقتصاد</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 158 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 9 -->
+            <div class="sdg-card" data-goal="9">
+                <span class="sdg-number">الهدف 9</span>
+                <div class="sdg-icon"><i class="fas fa-industry"></i></div>
+                <div class="sdg-title">الصناعة والابتكار والهياكل الأساسية</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 193 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 10 -->
+            <div class="sdg-card" data-goal="10">
+                <span class="sdg-number">الهدف 10</span>
+                <div class="sdg-icon"><i class="fas fa-scale-balanced"></i></div>
+                <div class="sdg-title">الحد من أوجه عدم المساواة</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 54 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 11 -->
+            <div class="sdg-card" data-goal="11">
+                <span class="sdg-number">الهدف 11</span>
+                <div class="sdg-icon"><i class="fas fa-city"></i></div>
+                <div class="sdg-title">مدن ومجتمعات محلية مستدامة</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 136 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 12 -->
+            <div class="sdg-card" data-goal="12">
+                <span class="sdg-number">الهدف 12</span>
+                <div class="sdg-icon"><i class="fas fa-recycle"></i></div>
+                <div class="sdg-title">الاستهلاك والإنتاج المسؤولان</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 64 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 13 -->
+            <div class="sdg-card" data-goal="13">
+                <span class="sdg-number">الهدف 13</span>
+                <div class="sdg-icon"><i class="fas fa-temperature-high"></i></div>
+                <div class="sdg-title">العمل المناخي</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 233 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 14 -->
+            <div class="sdg-card" data-goal="14">
+                <span class="sdg-number">الهدف 14</span>
+                <div class="sdg-icon"><i class="fas fa-fish"></i></div>
+                <div class="sdg-title">الحياة تحت الماء</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 10 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 15 -->
+            <div class="sdg-card" data-goal="15">
+                <span class="sdg-number">الهدف 15</span>
+                <div class="sdg-icon"><i class="fas fa-tree"></i></div>
+                <div class="sdg-title">الحياة في البر</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 29 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 16 -->
+            <div class="sdg-card" data-goal="16">
+                <span class="sdg-number">الهدف 16</span>
+                <div class="sdg-icon"><i class="fas fa-gavel"></i></div>
+                <div class="sdg-title">السلام والعدل والمؤسسات القوية</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 330 مشروع</span>
+                </div>
+            </div>
+
+            <!-- الهدف 17 -->
+            <div class="sdg-card" data-goal="17">
+                <span class="sdg-number">الهدف 17</span>
+                <div class="sdg-icon"><i class="fas fa-handshake"></i></div>
+                <div class="sdg-title">عقد الشراكات لتحقيق الأهداف</div>
+                <div class="sdg-footer">
+                    <span><i class="fas fa-star"></i> 330 مشروع</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- بطاقة ختامية (مع تعديل "جامعة" إلى "كلية") -->
+        <div class="closing-card">
+            <p>
+                <i class="fas fa-quote-right"></i>
+                نحن بحاجة إلى إنجازها، بطريقة مستدامة في كل مكان، كل يوم
+                <i class="fas fa-quote-left"></i>
+            </p>
+            <div style="margin-top: 1rem; color: #b68b40; font-size: 1.2rem;">
+                <i class="fas fa-seedling"></i> نحو كلية مستدامة <i class="fas fa-seedling"></i>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© كلية النهضة الجديدة – التنمية المستدامة هي طريقنا للمستقبل</p>
+        </div>
+    </div>
+
+<script>
+
+/* القائمة الجانبية */
+
+function toggleMenu(){
+
+let menu=document.getElementById("sidebar");
+
+menu.style.width = menu.style.width==="250px" ? "0":"250px";
+
+}
+</script>
+
+
+</body>
+</html>
